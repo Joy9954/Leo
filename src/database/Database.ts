@@ -1,9 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const DB_PATH = process.env.DB_PATH || './data/bot.db';
 
@@ -109,6 +106,26 @@ function initializeSchema(db: Database.Database): void {
       gold_gained INTEGER NOT NULL DEFAULT 0,
       created_at INTEGER NOT NULL DEFAULT (unixepoch()),
       FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS custom_items (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      type TEXT NOT NULL,
+      subtype TEXT,
+      description TEXT NOT NULL,
+      attack_bonus INTEGER DEFAULT 0,
+      defense_bonus INTEGER DEFAULT 0,
+      spirit_bonus INTEGER DEFAULT 0,
+      heal_amount INTEGER DEFAULT 0,
+      spirit_restore_amount INTEGER DEFAULT 0,
+      xp_bonus INTEGER DEFAULT 0,
+      price INTEGER NOT NULL DEFAULT 0,
+      emoji TEXT NOT NULL,
+      required_level INTEGER DEFAULT 1,
+      created_by TEXT NOT NULL,
+      created_at INTEGER NOT NULL DEFAULT (unixepoch()),
+      FOREIGN KEY (created_by) REFERENCES players(id) ON DELETE CASCADE
     );
   `);
 }

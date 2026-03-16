@@ -1,20 +1,25 @@
 import { EmbedBuilder } from 'discord.js';
-import { Character } from '../database/PlayerRepository';
+import { Character, getCustomItems } from '../database/PlayerRepository';
 import { MonsterDef } from '../game/ExplorationEngine';
 import { CombatResult } from '../game/CombatEngine';
 import { buildBar, getSequenceName } from './embeds';
 import itemsData from '../data/items.json';
 
 type ItemEntry = { id: string; name: string };
-const allItems: ItemEntry[] = [
-  ...(itemsData.materials as ItemEntry[]),
-  ...(itemsData.weapons as ItemEntry[]),
-  ...(itemsData.armor as ItemEntry[]),
-  ...(itemsData.consumables as ItemEntry[]),
-];
+
+function getAllItems(): ItemEntry[] {
+  const jsonItems: ItemEntry[] = [
+    ...(itemsData.materials as ItemEntry[]),
+    ...(itemsData.weapons as ItemEntry[]),
+    ...(itemsData.armor as ItemEntry[]),
+    ...(itemsData.consumables as ItemEntry[]),
+  ];
+  const customItems = getCustomItems().map(item => ({ id: item.id, name: item.name }));
+  return [...jsonItems, ...customItems];
+}
 
 function getItemName(itemId: string): string {
-  return allItems.find(i => i.id === itemId)?.name ?? itemId;
+  return getAllItems().find(i => i.id === itemId)?.name ?? itemId;
 }
 
 export function buildCombatEmbed(

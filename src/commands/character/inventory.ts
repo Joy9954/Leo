@@ -1,19 +1,35 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { Command } from '../../client/BotClient';
-import { getCharacter, getInventory, InventoryItem } from '../../database/PlayerRepository';
+import { getCharacter, getInventory, InventoryItem, getCustomItems } from '../../database/PlayerRepository';
 import itemsData from '../../data/items.json';
 import { errorEmbed, getPathwayColor } from '../../utils/embeds';
 
 type ItemEntry = { id: string; name: string; type: string; description: string; emoji: string; attackBonus?: number; defenseBonus?: number; spiritBonus?: number; healAmount?: number; price: number };
-const allItems: ItemEntry[] = [
-  ...(itemsData.weapons as ItemEntry[]),
-  ...(itemsData.armor as ItemEntry[]),
-  ...(itemsData.consumables as ItemEntry[]),
-  ...(itemsData.materials as ItemEntry[]),
-];
+
+function getAllItems(): ItemEntry[] {
+  const jsonItems: ItemEntry[] = [
+    ...(itemsData.weapons as ItemEntry[]),
+    ...(itemsData.armor as ItemEntry[]),
+    ...(itemsData.consumables as ItemEntry[]),
+    ...(itemsData.materials as ItemEntry[]),
+  ];
+  const customItems = getCustomItems().map(item => ({
+    id: item.id,
+    name: item.name,
+    type: item.type,
+    description: item.description,
+    emoji: item.emoji,
+    price: item.price,
+    attackBonus: item.attack_bonus || undefined,
+    defenseBonus: item.defense_bonus || undefined,
+    spiritBonus: item.spirit_bonus || undefined,
+    healAmount: item.heal_amount || undefined,
+  }));
+  return [...jsonItems, ...customItems];
+}
 
 function getItemData(itemId: string): ItemEntry | undefined {
-  return allItems.find(i => i.id === itemId);
+  return getAllItems().find(i => i.id === itemId);
 }
 
 const command: Command = {

@@ -1,5 +1,6 @@
 import { Character } from '../database/PlayerRepository';
 import itemsData from '../data/items.json';
+import { getCustomItems } from '../database/PlayerRepository';
 
 export interface CombatResult {
   rounds: CombatRound[];
@@ -40,8 +41,12 @@ function rollDice(min: number, max: number): number {
 
 function getEquippedAttackBonus(equipped: { item_id: string }[]): number {
   let bonus = 0;
+  const allWeapons = [
+    ...(itemsData.weapons as Array<{ id: string; attackBonus: number }>),
+    ...getCustomItems().filter(item => item.type === 'weapon').map(item => ({ id: item.id, attackBonus: item.attack_bonus })),
+  ];
   for (const inv of equipped) {
-    const weapon = (itemsData.weapons as Array<{ id: string; attackBonus: number }>).find(w => w.id === inv.item_id);
+    const weapon = allWeapons.find(w => w.id === inv.item_id);
     if (weapon) bonus += weapon.attackBonus;
   }
   return bonus;
@@ -49,8 +54,12 @@ function getEquippedAttackBonus(equipped: { item_id: string }[]): number {
 
 function getEquippedDefenseBonus(equipped: { item_id: string }[]): number {
   let bonus = 0;
+  const allArmor = [
+    ...(itemsData.armor as Array<{ id: string; defenseBonus: number }>),
+    ...getCustomItems().filter(item => item.type === 'armor').map(item => ({ id: item.id, defenseBonus: item.defense_bonus })),
+  ];
   for (const inv of equipped) {
-    const armor = (itemsData.armor as Array<{ id: string; defenseBonus: number }>).find(a => a.id === inv.item_id);
+    const armor = allArmor.find(a => a.id === inv.item_id);
     if (armor) bonus += armor.defenseBonus;
   }
   return bonus;
@@ -58,9 +67,12 @@ function getEquippedDefenseBonus(equipped: { item_id: string }[]): number {
 
 function getSpiritBonus(equipped: { item_id: string }[]): number {
   let bonus = 0;
+  const allItems = [
+    ...[...(itemsData.weapons as Array<{ id: string; spiritBonus?: number }>), ...(itemsData.armor as Array<{ id: string; spiritBonus?: number }>)],
+    ...getCustomItems().map(item => ({ id: item.id, spiritBonus: item.spirit_bonus })),
+  ];
   for (const inv of equipped) {
-    const all = [...(itemsData.weapons as Array<{ id: string; spiritBonus?: number }>), ...(itemsData.armor as Array<{ id: string; spiritBonus?: number }>)];
-    const item = all.find(i => i.id === inv.item_id);
+    const item = allItems.find(i => i.id === inv.item_id);
     if (item?.spiritBonus) bonus += item.spiritBonus;
   }
   return bonus;

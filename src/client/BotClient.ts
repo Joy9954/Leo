@@ -7,9 +7,6 @@ import {
   Routes,
   RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from 'discord.js';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export interface Command {
   data: { name: string; toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody };

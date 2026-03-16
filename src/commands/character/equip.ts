@@ -1,14 +1,28 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { Command } from '../../client/BotClient';
-import { getCharacter, getInventory, equipItem } from '../../database/PlayerRepository';
+import { getCharacter, getInventory, equipItem, getCustomItems } from '../../database/PlayerRepository';
 import itemsData from '../../data/items.json';
 import { errorEmbed, successEmbed } from '../../utils/embeds';
 
 type ItemEntry = { id: string; name: string; type: string; subtype: string; requiredLevel: number; emoji: string };
-const allItems: ItemEntry[] = [
-  ...(itemsData.weapons as ItemEntry[]),
-  ...(itemsData.armor as ItemEntry[]),
-];
+
+function getAllEquipableItems(): ItemEntry[] {
+  const jsonItems: ItemEntry[] = [
+    ...(itemsData.weapons as ItemEntry[]),
+    ...(itemsData.armor as ItemEntry[]),
+  ];
+  const customItems = getCustomItems()
+    .filter(item => item.type === 'weapon' || item.type === 'armor')
+    .map(item => ({
+      id: item.id,
+      name: item.name,
+      type: item.type,
+      subtype: item.type === 'weapon' ? 'custom_weapon' : 'custom_armor',
+      requiredLevel: item.required_level,
+      emoji: item.emoji,
+    }));
+  return [...jsonItems, ...customItems];
+}
 
 const command: Command = {
   data: new SlashCommandBuilder()
@@ -34,7 +48,7 @@ const command: Command = {
       return;
     }
 
-    const itemDef = allItems.find(i => i.id === itemId);
+    const itemDef = getAllEquipableItems().find(i => i.id === itemId);
     if (!itemDef) {
       await interaction.reply({ embeds: [errorEmbed('This item cannot be equipped.')], ephemeral: true });
       return;

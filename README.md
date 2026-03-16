@@ -4,8 +4,9 @@ A feature-rich Discord RPG bot themed around the web novel *Lord of Mysteries* (
 
 ## Features
 
+- **Dual Command System** — Use slash commands (`/command`) or prefix commands (`!command`)
 - **22 Beyonder Pathways** — All tarot pathways (The Fool, The Magician, ..., Judgment) with 9 Sequences each
-- **Character Creation** — Choose your pathway, name your character via Discord modal
+- **Character Creation** — Choose your pathway, name your character via Discord modal (slash) or text (prefix)
 - **Sequence Progression** — Advance from Sequence 9 to Sequence 1 as you level up
 - **Beyonder Powers** — Unique abilities per pathway/sequence used in combat
 - **PvE Combat** — Fight monsters scaled to your level with turn-based mechanics
@@ -17,6 +18,7 @@ A feature-rich Discord RPG bot themed around the web novel *Lord of Mysteries* (
 - **Tarot Club** — Secret organization with special membership and codenames
 - **SQLite Persistence** — All player data saved with `better-sqlite3`
 - **Leaderboard** — Top Beyonders ranked by level
+- **Admin Tools** — Server admins can add custom items and manage content
 
 ## Quick Start
 
@@ -52,6 +54,11 @@ npm install
 npm run build
 npm start
 ```
+
+The bot supports both slash commands (`/command`) and prefix commands (`!command`). For example:
+- `/create` or `!create fool "My Character"`
+- `/explore` or `!explore`
+- `/profile` or `!profile @user`
 
 Or run in development mode:
 ```bash
@@ -103,6 +110,12 @@ npm run dev
 | `/tarot pathway <id>` | Detailed pathway and sequence info |
 | `/tarot leaderboard` | Top Beyonders ranking |
 | `/help` | Show all commands |
+
+### 👑 Admin Commands (Server Admins Only)
+| Command | Description |
+|---------|-------------|
+| `/a-add-item` | Add custom weapons, armor, or consumables to the game |
+| `/a-list-items` | List or delete custom items |
 
 ## The 22 Beyonder Pathways
 

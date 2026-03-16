@@ -12,7 +12,8 @@ const command: Command = {
       .setTitle('📖 Lord of Mysteries RPG Bot — Help')
       .setDescription(
         'Welcome to the world of *Lord of Mysteries*! You are a **Beyonder** — a human who has consumed a Beyonder potion and gained supernatural abilities.\n\n' +
-        'Your goal is to advance through the 9 Sequences of your chosen pathway, gain power, complete quests, and perhaps join the legendary **Tarot Club**.'
+        'Your goal is to advance through the 9 Sequences of your chosen pathway, gain power, complete quests, and perhaps join the legendary **Tarot Club**.\n\n' +
+        '**Commands can be used with slash commands (`/command`) or prefix commands (`!command`).**'
       )
       .addFields(
         {
@@ -67,6 +68,14 @@ const command: Command = {
             '`/tarot pathways` — List all 22 Beyonder pathways',
             '`/tarot pathway <id>` — Detailed pathway info',
             '`/tarot leaderboard` — Top Beyonders ranking',
+          ].join('\n'),
+          inline: false,
+        },
+        {
+          name: '👑 Admin Commands (Server Admins Only)',
+          value: [
+            '`/a-add-item` or `!a-add-item` — Add custom weapons, armor, or consumables',
+            '`/a-list-items` or `!a-list-items` — List or delete custom items',
           ].join('\n'),
           inline: false,
         },

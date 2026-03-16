@@ -1,11 +1,26 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { Command } from '../../client/BotClient';
-import { getCharacter, upsertPlayer, getInventory, removeFromInventory, modifyHealth, modifySpirit, addExperience } from '../../database/PlayerRepository';
+import { getCharacter, upsertPlayer, getInventory, removeFromInventory, modifyHealth, modifySpirit, addExperience, getCustomItems } from '../../database/PlayerRepository';
 import itemsData from '../../data/items.json';
 import { errorEmbed, successEmbed } from '../../utils/embeds';
 
 type ConsumableItem = { id: string; name: string; type: string; emoji: string; healAmount?: number; spiritRestoreAmount?: number; xpBonus?: number };
-const consumables = itemsData.consumables as ConsumableItem[];
+
+function getAllConsumables(): ConsumableItem[] {
+  const jsonConsumables = itemsData.consumables as ConsumableItem[];
+  const customConsumables = getCustomItems()
+    .filter(item => item.type === 'consumable')
+    .map(item => ({
+      id: item.id,
+      name: item.name,
+      type: item.type,
+      emoji: item.emoji,
+      healAmount: item.heal_amount || undefined,
+      spiritRestoreAmount: item.spirit_restore_amount || undefined,
+      xpBonus: item.xp_bonus || undefined,
+    }));
+  return [...jsonConsumables, ...customConsumables];
+}
 
 const command: Command = {
   data: new SlashCommandBuilder()
@@ -32,7 +47,7 @@ const command: Command = {
       return;
     }
 
-    const item = consumables.find(i => i.id === itemId);
+    const item = getAllConsumables().find(i => i.id === itemId);
     if (!item) {
       await interaction.reply({ embeds: [errorEmbed('This item cannot be used directly.')], ephemeral: true });
       return;

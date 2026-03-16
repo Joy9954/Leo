@@ -32,10 +32,48 @@ const command: Command = {
     .setName('create')
     .setDescription('Create your Beyonder character and choose a pathway'),
 
-  async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+  async execute(interaction: ChatInputCommandInteraction | any): Promise<void> {
     const existing = getCharacter(interaction.user.id);
     if (existing) {
-      await interaction.reply({ embeds: [errorEmbed(`You already have a character: **${existing.name}**. Use \`/profile\` to view it.`)], ephemeral: true });
+      const reply = interaction.isPrefixCommand ? 
+        `You already have a character: **${existing.name}**. Use \`!profile\` to view it.` :
+        { embeds: [errorEmbed(`You already have a character: **${existing.name}**. Use \`/profile\` to view it.`)], ephemeral: true };
+      await interaction.reply(reply);
+      return;
+    }
+
+    if (interaction.isPrefixCommand) {
+      // Handle prefix command: !create <pathway> <name>
+      const pathwayId = interaction.options.getString('pathway');
+      const name = interaction.options.getString('name');
+
+      if (!pathwayId || !name) {
+        await interaction.reply('Usage: `!create <pathway> <name>`\nExample: `!create fool "John Doe"`\nUse `!tarot pathways` to see available pathways.');
+        return;
+      }
+
+      const pathway = pathways.find(p => p.id.toLowerCase() === pathwayId.toLowerCase());
+      if (!pathway) {
+        await interaction.reply(`Pathway "${pathwayId}" not found. Use \`!tarot pathways\` to see available pathways.`);
+        return;
+      }
+
+      const seq9 = pathway.sequences.find(s => s.number === 9);
+
+      const statRoll = () => Math.floor(Math.random() * 6) + 5;
+      const stats = {
+        strength: statRoll(),
+        dexterity: statRoll(),
+        willpower: statRoll(),
+        luck: statRoll(),
+      };
+
+      upsertPlayer(interaction.user.id, interaction.user.username);
+      const char = createCharacter(interaction.user.id, name, pathway.id, stats);
+
+      const response = `✨ Character Created!\n\nWelcome to the world of Lord of Mysteries, **${char.name}**!\n\nYou have chosen the **${pathway.name}** pathway.\nYou begin your journey as a **${seq9?.name ?? 'Beyonder'}** at Sequence 9.\n\n💪 Strength: ${stats.strength}\n🏃 Dexterity: ${stats.dexterity}\n🧠 Willpower: ${stats.willpower}\n🍀 Luck: ${stats.luck}\n❤️ Max Health: ${char.max_health}\n💙 Max Spirit: ${char.max_spirit}\n\nUse \`!profile\` to view your character. Use \`!explore\` to begin your adventure!`;
+
+      await interaction.reply(response);
       return;
     }
 
@@ -67,7 +105,7 @@ const command: Command = {
 
     const collector = interaction.channel?.createMessageComponentCollector({
       componentType: ComponentType.StringSelect,
-      filter: i => i.user.id === interaction.user.id && i.customId === 'select_pathway',
+      filter: (i: any) => i.user.id === interaction.user.id && i.customId === 'select_pathway',
       time: 60000,
       max: 1,
     });
@@ -107,6 +145,10 @@ const command: Command = {
       }
 
       const name = modalInteraction.fields.getTextInputValue('character_name').trim();
+      if (!name) {
+        await modalInteraction.reply({ embeds: [errorEmbed('Character name cannot be empty.')], ephemeral: true });
+        return;
+      }
       const seq9 = pathway.sequences.find(s => s.number === 9);
 
       const statRoll = () => Math.floor(Math.random() * 6) + 5;
@@ -141,7 +183,7 @@ const command: Command = {
       await modalInteraction.reply({ embeds: [successEmbed] });
     });
 
-    collector.on('end', async (collected) => {
+    collector.on('end', async (collected: any) => {
       if (collected.size === 0) {
         await interaction.editReply({ embeds: [errorEmbed('Character creation timed out.')], components: [] });
       }

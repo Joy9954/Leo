@@ -1,15 +1,32 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { Command } from '../../client/BotClient';
-import { getCharacter, upsertPlayer, addToInventory, modifyGold } from '../../database/PlayerRepository';
+import { getCharacter, upsertPlayer, addToInventory, modifyGold, getCustomItems } from '../../database/PlayerRepository';
 import itemsData from '../../data/items.json';
 import { errorEmbed, successEmbed, getPathwayColor } from '../../utils/embeds';
 
 type ShopItem = { id: string; name: string; type: string; description: string; emoji: string; price: number; requiredLevel?: number; attackBonus?: number; defenseBonus?: number; spiritBonus?: number; healAmount?: number };
-const shopItems: ShopItem[] = [
-  ...(itemsData.weapons as ShopItem[]),
-  ...(itemsData.armor as ShopItem[]),
-  ...(itemsData.consumables as ShopItem[]),
-];
+
+function getAllShopItems(): ShopItem[] {
+  const jsonItems: ShopItem[] = [
+    ...(itemsData.weapons as ShopItem[]),
+    ...(itemsData.armor as ShopItem[]),
+    ...(itemsData.consumables as ShopItem[]),
+  ];
+  const customItems = getCustomItems().map(item => ({
+    id: item.id,
+    name: item.name,
+    type: item.type,
+    description: item.description,
+    emoji: item.emoji,
+    price: item.price,
+    requiredLevel: item.required_level,
+    attackBonus: item.attack_bonus,
+    defenseBonus: item.defense_bonus,
+    spiritBonus: item.spirit_bonus,
+    healAmount: item.heal_amount,
+  }));
+  return [...jsonItems, ...customItems];
+}
 
 const command: Command = {
   data: new SlashCommandBuilder()
@@ -37,7 +54,7 @@ const command: Command = {
     const action = interaction.options.getString('action', true);
 
     if (action === 'browse') {
-      const available = shopItems.filter(i => (i.requiredLevel ?? 1) <= char.level + 5);
+      const available = getAllShopItems().filter(i => (i.requiredLevel ?? 1) <= char.level + 5);
       const weapons = available.filter(i => i.type === 'weapon');
       const armor = available.filter(i => i.type === 'armor');
       const consumables = available.filter(i => i.type === 'consumable');
@@ -72,7 +89,7 @@ const command: Command = {
       return;
     }
 
-    const item = shopItems.find(i => i.id === itemId.toLowerCase().replace(/ /g, '_'));
+    const item = getAllShopItems().find(i => i.id === itemId.toLowerCase().replace(/ /g, '_'));
     if (!item) {
       await interaction.reply({ embeds: [errorEmbed(`Item \`${itemId}\` not found in the shop.`)], ephemeral: true });
       return;

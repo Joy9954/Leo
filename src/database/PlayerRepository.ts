@@ -271,3 +271,79 @@ export function setTarotMembership(playerId: string, codename: string): void {
   const db = getDatabase();
   db.prepare('UPDATE characters SET tarot_member = 1, tarot_codename = ? WHERE player_id = ?').run(codename, playerId);
 }
+
+export interface CustomItem {
+  id: string;
+  name: string;
+  type: string;
+  subtype?: string;
+  description: string;
+  attack_bonus: number;
+  defense_bonus: number;
+  spirit_bonus: number;
+  heal_amount: number;
+  spirit_restore_amount: number;
+  xp_bonus: number;
+  price: number;
+  emoji: string;
+  required_level: number;
+  created_by: string;
+  created_at: number;
+}
+
+export function addCustomItem(
+  id: string,
+  name: string,
+  type: string,
+  description: string,
+  price: number,
+  emoji: string,
+  createdBy: string,
+  options: {
+    subtype?: string;
+    attackBonus?: number;
+    defenseBonus?: number;
+    spiritBonus?: number;
+    healAmount?: number;
+    spiritRestoreAmount?: number;
+    xpBonus?: number;
+    requiredLevel?: number;
+  } = {}
+): boolean {
+  const db = getDatabase();
+  try {
+    db.prepare(`
+      INSERT INTO custom_items (
+        id, name, type, subtype, description, attack_bonus, defense_bonus, spirit_bonus,
+        heal_amount, spirit_restore_amount, xp_bonus, price, emoji, required_level, created_by
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      id, name, type, options.subtype || null, description,
+      options.attackBonus || 0, options.defenseBonus || 0, options.spiritBonus || 0,
+      options.healAmount || 0, options.spiritRestoreAmount || 0, options.xpBonus || 0,
+      price, emoji, options.requiredLevel || 1, createdBy
+    );
+    return true;
+  } catch (error) {
+    console.error('Failed to add custom item:', error);
+    return false;
+  }
+}
+
+export function getCustomItems(): CustomItem[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM custom_items ORDER BY created_at DESC').all() as CustomItem[];
+}
+
+export function getCustomItem(itemId: string): CustomItem | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM custom_items WHERE id = ?').get(itemId) as CustomItem | undefined;
+}
+
+export function deleteCustomItem(itemId: string, createdBy: string): boolean {
+  const db = getDatabase();
+  const item = getCustomItem(itemId);
+  if (!item || item.created_by !== createdBy) return false;
+  db.prepare('DELETE FROM custom_items WHERE id = ?').run(itemId);
+  return true;
+}
