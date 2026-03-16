@@ -1,0 +1,420 @@
+[
+  {
+    "id": "fool",
+    "name": "The Fool",
+    "chineseName": "愚者",
+    "tarotNumber": 0,
+    "description": "The pathway of mystery and trickery. Fools are mystery planners who distort fate and bend reality through clever schemes and hidden power.",
+    "color": "#9B59B6",
+    "sequences": [
+      { "number": 9, "name": "Seer", "description": "Can perceive fate threads and glimpse fragments of the future." },
+      { "number": 8, "name": "Bizarro Sorcerer", "description": "Masters minor distortions of reality and fate manipulation." },
+      { "number": 7, "name": "Witch", "description": "Skilled in hexes, curses, and binding contracts." },
+      { "number": 6, "name": "Faceless", "description": "Can alter appearance and steal the identities of others." },
+      { "number": 5, "name": "Marionettist", "description": "Controls others like puppets through fate strings." },
+      { "number": 4, "name": "Bizarro Sorcerer", "description": "Weaves complex illusions indistinguishable from reality." },
+      { "number": 3, "name": "Miracle Invoker", "description": "Calls upon miraculous events to reshape outcomes." },
+      { "number": 2, "name": "Attendant of Mysteries", "description": "An attendant to the mysteries of the cosmos, bending fate itself." },
+      { "number": 1, "name": "Mystery Pryer", "description": "Peers into the deepest mysteries and distorts fundamental truths." }
+    ]
+  },
+  {
+    "id": "magician",
+    "name": "The Magician",
+    "chineseName": "魔术师",
+    "tarotNumber": 1,
+    "description": "The pathway of performance, charm, and sealed artifacts. Magicians weave illusions and create powerful seals.",
+    "color": "#F39C12",
+    "sequences": [
+      { "number": 9, "name": "Apprentice", "description": "Learns the basics of magic and creates minor seals." },
+      { "number": 8, "name": "Trickmaster", "description": "Masters tricks and minor illusions that fool the senses." },
+      { "number": 7, "name": "Hypnotist", "description": "Can hypnotize individuals and implant suggestions." },
+      { "number": 6, "name": "Illusionist", "description": "Creates powerful illusions affecting multiple targets." },
+      { "number": 5, "name": "Mentalist", "description": "Reads minds and projects thoughts across distances." },
+      { "number": 4, "name": "Magician", "description": "A true master of the magical arts and performance." },
+      { "number": 3, "name": "Miracle Invoker", "description": "Invokes miracles through pure magical performance." },
+      { "number": 2, "name": "Sealed Artifact Specialist", "description": "Creates and handles extraordinarily powerful sealed artifacts." },
+      { "number": 1, "name": "Extraordinary", "description": "Achieves the apex of magical power and sealed artifact creation." }
+    ]
+  },
+  {
+    "id": "high_priestess",
+    "name": "The High Priestess",
+    "chineseName": "女祭司",
+    "tarotNumber": 2,
+    "description": "The pathway of knowledge, mythical creatures, and ancient secrets. Priestesses commune with divine entities.",
+    "color": "#2ECC71",
+    "sequences": [
+      { "number": 9, "name": "Secrets Suppliant", "description": "Seeks out hidden knowledge and ancient secrets." },
+      { "number": 8, "name": "Contractee", "description": "Forms binding contracts with supernatural entities." },
+      { "number": 7, "name": "Potions Artisan", "description": "Brews powerful potions using Beyonder ingredients." },
+      { "number": 6, "name": "Beast Tamer", "description": "Tames and commands mythical creatures and beasts." },
+      { "number": 5, "name": "Scarlet Scholar", "description": "Uncovers dark truths about the world's hidden history." },
+      { "number": 4, "name": "Mythical Creature", "description": "Partially transforms into a mythical creature." },
+      { "number": 3, "name": "Druid", "description": "Channels the power of nature and ancient lore." },
+      { "number": 2, "name": "Mythical Creature Creator", "description": "Can create and summon mythical creatures." },
+      { "number": 1, "name": "The High Priestess", "description": "Becomes a deity-like being of pure knowledge and myth." }
+    ]
+  },
+  {
+    "id": "empress",
+    "name": "The Empress",
+    "chineseName": "皇后",
+    "tarotNumber": 3,
+    "description": "The pathway of charm, demoness powers, and alluring darkness. Empresses seduce and dominate.",
+    "color": "#E91E63",
+    "sequences": [
+      { "number": 9, "name": "Bard", "description": "Uses song and story to enchant those who listen." },
+      { "number": 8, "name": "Manipulator", "description": "Skilled at emotional manipulation and social control." },
+      { "number": 7, "name": "Artificer", "description": "Creates charm-infused items and enchanted objects." },
+      { "number": 6, "name": "Demoness", "description": "Gains demonic allure and supernatural charm." },
+      { "number": 5, "name": "Affliction Priest", "description": "Inflicts supernatural afflictions and curses." },
+      { "number": 4, "name": "Witch", "description": "Masters dark witchcraft and hexes." },
+      { "number": 3, "name": "Fallen Creator", "description": "Creates things twisted by demonic power." },
+      { "number": 2, "name": "Demoness of Pleasure", "description": "Embodies pleasure and dark desire as supernatural force." },
+      { "number": 1, "name": "Queen of Calamity", "description": "Becomes an avatar of calamity and irresistible power." }
+    ]
+  },
+  {
+    "id": "emperor",
+    "name": "The Emperor",
+    "chineseName": "皇帝",
+    "tarotNumber": 4,
+    "description": "The pathway of iron will, authority, and commanding power. Emperors lead through unbreakable dominance.",
+    "color": "#C0392B",
+    "sequences": [
+      { "number": 9, "name": "Soldier", "description": "A trained warrior with enhanced physical capabilities." },
+      { "number": 8, "name": "Warrior", "description": "Excels in combat with superior strength and tactics." },
+      { "number": 7, "name": "Pugilist", "description": "Masters unarmed combat and physical force." },
+      { "number": 6, "name": "Gladiator", "description": "A battle-hardened champion who thrives in arenas." },
+      { "number": 5, "name": "Weapon Master", "description": "Achieves mastery over all manner of weapons." },
+      { "number": 4, "name": "Dawn Paladin", "description": "A holy warrior combining combat with divine power." },
+      { "number": 3, "name": "Demon Hunter", "description": "Hunts and slays demonic entities with specialized power." },
+      { "number": 2, "name": "Iron-Blooded Knight", "description": "Near-invincible warrior with iron will and body." },
+      { "number": 1, "name": "Tyrant", "description": "An absolute ruler whose very presence dominates others." }
+    ]
+  },
+  {
+    "id": "hierophant",
+    "name": "The Hierophant",
+    "chineseName": "教皇",
+    "tarotNumber": 5,
+    "description": "The pathway of law, judgment, and divine authority. Hierophants enforce cosmic order.",
+    "color": "#F1C40F",
+    "sequences": [
+      { "number": 9, "name": "Arbiter", "description": "Judges situations with supernatural fairness and wisdom." },
+      { "number": 8, "name": "Sheriff", "description": "Enforces law with Beyonder capabilities." },
+      { "number": 7, "name": "Interrogator", "description": "Extracts truth through supernatural interrogation techniques." },
+      { "number": 6, "name": "Justiciar", "description": "Delivers divine justice to transgressors." },
+      { "number": 5, "name": "Discipline Master", "description": "Commands absolute discipline and order." },
+      { "number": 4, "name": "Imperative Mage", "description": "Issues commands that must be obeyed by supernatural law." },
+      { "number": 3, "name": "Judge", "description": "A supreme judge whose verdicts carry cosmic weight." },
+      { "number": 2, "name": "Pale Emperor", "description": "Rules with absolute authority, pale as justice itself." },
+      { "number": 1, "name": "Demoness of Law", "description": "Paradoxically becomes a demonic enforcer of cosmic law." }
+    ]
+  },
+  {
+    "id": "lovers",
+    "name": "The Lovers",
+    "chineseName": "恋人",
+    "tarotNumber": 6,
+    "description": "The pathway of twilight, giants, and emotional bonds. Lovers harness the power of relationships and the space between day and night.",
+    "color": "#FF6B9D",
+    "sequences": [
+      { "number": 9, "name": "Daydreamer", "description": "Dwells in the twilight between dreams and waking." },
+      { "number": 8, "name": "Midnight Poet", "description": "Crafts verses with supernatural resonance and power." },
+      { "number": 7, "name": "Psyche Analyst", "description": "Analyzes and manipulates the psyche of others." },
+      { "number": 6, "name": "Dreamscape Artist", "description": "Creates and enters dream realms." },
+      { "number": 5, "name": "Twilight Giant", "description": "Channels the power of twilight giants." },
+      { "number": 4, "name": "Calamity Priest", "description": "Priest who invokes calamity through emotional bonds." },
+      { "number": 3, "name": "Strange Path", "description": "Walks a strange path between worlds and emotions." },
+      { "number": 2, "name": "Fallen Creator", "description": "Creates new things infused with twilight power." },
+      { "number": 1, "name": "Creator", "description": "Achieves the power to create new realities." }
+    ]
+  },
+  {
+    "id": "chariot",
+    "name": "The Chariot",
+    "chineseName": "战车",
+    "tarotNumber": 7,
+    "description": "The pathway of speed, heroism, and spiritual warriors. Charioteers move with supernatural swiftness and battle spirits.",
+    "color": "#3498DB",
+    "sequences": [
+      { "number": 9, "name": "Hunter", "description": "Enhanced senses and tracking abilities of a skilled hunter." },
+      { "number": 8, "name": "Provoker", "description": "Provokes enemies and thrives in chaotic combat." },
+      { "number": 7, "name": "Dancer", "description": "Moves with supernatural grace and speed in combat." },
+      { "number": 6, "name": "Blade Alchemist", "description": "Infuses blades with alchemical and spiritual power." },
+      { "number": 5, "name": "Heroic Spirit", "description": "Channels the essence of legendary heroes." },
+      { "number": 4, "name": "Unshadowed", "description": "Exists beyond the reach of shadows and darkness." },
+      { "number": 3, "name": "Swordmaster", "description": "A transcendent master of the blade and combat arts." },
+      { "number": 2, "name": "Warlord", "description": "Commands battlefield energy and inspires supernatural valor." },
+      { "number": 1, "name": "Conqueror", "description": "Conquers all through unmatched speed and warrior spirit." }
+    ]
+  },
+  {
+    "id": "justice",
+    "name": "Justice",
+    "chineseName": "正义",
+    "tarotNumber": 8,
+    "description": "The pathway of order, light, and righteous power. Justice users wield holy light against darkness.",
+    "color": "#ECF0F1",
+    "sequences": [
+      { "number": 9, "name": "Priest of Light", "description": "A devoted priest who channels divine light." },
+      { "number": 8, "name": "Lightseeker", "description": "Seeks and wields the power of pure light." },
+      { "number": 7, "name": "Solar High Priest", "description": "High priest of solar divine power." },
+      { "number": 6, "name": "Notary", "description": "A notary of cosmic order who validates reality itself." },
+      { "number": 5, "name": "Faithful", "description": "Absolute faith grants supernatural protection and power." },
+      { "number": 4, "name": "Apothecary", "description": "Uses divine knowledge to heal and restore." },
+      { "number": 3, "name": "Bishop", "description": "Wields immense divine authority and holy power." },
+      { "number": 2, "name": "Cardinal of Sins", "description": "Paradoxically masters sin to uphold divine order." },
+      { "number": 1, "name": "Antigonus", "description": "Reaches godlike status through absolute righteousness." }
+    ]
+  },
+  {
+    "id": "hermit",
+    "name": "The Hermit",
+    "chineseName": "隐者",
+    "tarotNumber": 9,
+    "description": "The pathway of vision, foresight, and hidden knowledge. Hermits see what others cannot.",
+    "color": "#95A5A6",
+    "sequences": [
+      { "number": 9, "name": "Clairvoyant", "description": "Sees events at great distances and through barriers." },
+      { "number": 8, "name": "Telepather", "description": "Reads thoughts and communicates mind to mind." },
+      { "number": 7, "name": "Psychiatrist", "description": "Treats and manipulates mental states." },
+      { "number": 6, "name": "Astrologer", "description": "Reads celestial omens and predicts future events." },
+      { "number": 5, "name": "Prophet", "description": "Receives true visions of what is to come." },
+      { "number": 4, "name": "Spectral Warlock", "description": "Wields spectral power over minds and spirits." },
+      { "number": 3, "name": "Omniscient Eye", "description": "Knows all that occurs within a vast range." },
+      { "number": 2, "name": "Seer", "description": "A supreme seer whose visions encompass all of fate." },
+      { "number": 1, "name": "Inevitable", "description": "Their prophecies become inescapable reality." }
+    ]
+  },
+  {
+    "id": "wheel_of_fortune",
+    "name": "Wheel of Fortune",
+    "chineseName": "命运",
+    "tarotNumber": 10,
+    "description": "The pathway of luck, fate, and opportunity. Fortune users bend probability to their will.",
+    "color": "#E67E22",
+    "sequences": [
+      { "number": 9, "name": "Lucky One", "description": "Blessed with supernatural good luck in all endeavors." },
+      { "number": 8, "name": "Calamity Invoker", "description": "Calls misfortune down upon enemies." },
+      { "number": 7, "name": "Misfortune Witch", "description": "Curses enemies with chains of bad luck." },
+      { "number": 6, "name": "Lottery Mage", "description": "Manipulates probability for dramatic results." },
+      { "number": 5, "name": "Fate Weaver", "description": "Weaves the threads of fate for self and others." },
+      { "number": 4, "name": "Wheel Shaker", "description": "Shakes the wheel of fortune to reshape outcomes." },
+      { "number": 3, "name": "Calamity Personification", "description": "Becomes the living embodiment of calamity." },
+      { "number": 2, "name": "Luck Stealer", "description": "Steals luck directly from others to empower oneself." },
+      { "number": 1, "name": "Inevitability", "description": "Their fate becomes the fate of all around them." }
+    ]
+  },
+  {
+    "id": "strength",
+    "name": "Strength",
+    "chineseName": "力量",
+    "tarotNumber": 11,
+    "description": "The pathway of demonic power, raw strength, and primal force. Strength users tap into terrifying might.",
+    "color": "#8E44AD",
+    "sequences": [
+      { "number": 9, "name": "Beastmaster", "description": "Commands beasts and gains bestial strength." },
+      { "number": 8, "name": "Ferosocial", "description": "Combines ferocity with social dominance." },
+      { "number": 7, "name": "Barbarian", "description": "Unleashes savage fury in battle." },
+      { "number": 6, "name": "Demon", "description": "Partially transforms into a demonic being of power." },
+      { "number": 5, "name": "Werewolf", "description": "Transforms into a powerful werewolf form." },
+      { "number": 4, "name": "Devil", "description": "Embodies the power of a true devil." },
+      { "number": 3, "name": "Primordial Demoness", "description": "Channels primordial demonic power." },
+      { "number": 2, "name": "Demon God", "description": "Ascends to near-divine demonic power." },
+      { "number": 1, "name": "Demoness Mother", "description": "The ultimate source of demonic power and creation." }
+    ]
+  },
+  {
+    "id": "hanged_man",
+    "name": "The Hanged Man",
+    "chineseName": "倒吊人",
+    "tarotNumber": 12,
+    "description": "The pathway of despair, sacrifice, and reversed perspectives. Hanged Men gain power through accepting loss.",
+    "color": "#2C3E50",
+    "sequences": [
+      { "number": 9, "name": "Marauder", "description": "A cunning raider who takes what they need." },
+      { "number": 8, "name": "Shadow Hiding", "description": "Conceals self perfectly within shadows." },
+      { "number": 7, "name": "Gatekeeper", "description": "Guards and manipulates the gates between places." },
+      { "number": 6, "name": "Scammer", "description": "A supernatural trickster and fraud artist." },
+      { "number": 5, "name": "Werewolf", "description": "Transforms through acceptance of one's darker nature." },
+      { "number": 4, "name": "Parasite", "description": "Parasitically draws power from hosts." },
+      { "number": 3, "name": "Strange Path", "description": "Walks a strange inverted path outside normal reality." },
+      { "number": 2, "name": "Despair Summoner", "description": "Summons and weaponizes despair itself." },
+      { "number": 1, "name": "Hanged King", "description": "Rules from an inverted throne of sacrifice." }
+    ]
+  },
+  {
+    "id": "death",
+    "name": "Death",
+    "chineseName": "死亡",
+    "tarotNumber": 13,
+    "description": "The pathway of undeath, the underworld, and necromancy. Death users straddle the line between life and oblivion.",
+    "color": "#1ABC9C",
+    "sequences": [
+      { "number": 9, "name": "Gravedigger", "description": "Works with the dead and earns their cooperation." },
+      { "number": 8, "name": "Spirit Medium", "description": "Communicates with and summons spirits of the dead." },
+      { "number": 7, "name": "Corpse Collector", "description": "Collects and reanimates the dead." },
+      { "number": 6, "name": "Zombie Magician", "description": "Masters zombie creation and necromantic magic." },
+      { "number": 5, "name": "Undying", "description": "Achieves a form of immortality through undeath." },
+      { "number": 4, "name": "Wraith", "description": "Exists partially as a wraith, transcending physical limits." },
+      { "number": 3, "name": "Death Consul", "description": "Acts as a consul for death itself." },
+      { "number": 2, "name": "Gatekeeper of Death", "description": "Guards the ultimate threshold between life and death." },
+      { "number": 1, "name": "Death", "description": "Becomes an avatar of death itself." }
+    ]
+  },
+  {
+    "id": "temperance",
+    "name": "Temperance",
+    "chineseName": "节制",
+    "tarotNumber": 14,
+    "description": "The pathway of amber, preservation, and ancient knowledge. Temperance users preserve and transmute.",
+    "color": "#D4AC0D",
+    "sequences": [
+      { "number": 9, "name": "Apothecary", "description": "Mixes potions and herbal remedies with Beyonder effect." },
+      { "number": 8, "name": "Archaeologist", "description": "Uncovers and analyzes ancient artifacts and sites." },
+      { "number": 7, "name": "Appraiser", "description": "Accurately appraises the value and properties of objects." },
+      { "number": 6, "name": "Scribe", "description": "Records and preserves knowledge with supernatural accuracy." },
+      { "number": 5, "name": "Artisan", "description": "Crafts objects of supernatural quality." },
+      { "number": 4, "name": "Amber Mage", "description": "Manipulates amber to preserve and trap." },
+      { "number": 3, "name": "Antiquarian", "description": "Masters all ancient knowledge and artifacts." },
+      { "number": 2, "name": "Timeless", "description": "Steps outside the flow of time." },
+      { "number": 1, "name": "Eternal", "description": "Achieves true immortality and eternal preservation." }
+    ]
+  },
+  {
+    "id": "devil",
+    "name": "The Devil",
+    "chineseName": "恶魔",
+    "tarotNumber": 15,
+    "description": "The pathway of contracts, vice, and dark bargains. Devils bind others through unbreakable agreements.",
+    "color": "#A93226",
+    "sequences": [
+      { "number": 9, "name": "Criminal", "description": "Skilled in criminal arts and dark dealings." },
+      { "number": 8, "name": "Swindler", "description": "A supernatural con artist and manipulator." },
+      { "number": 7, "name": "Lawyer", "description": "Uses supernatural legal acumen to bind and manipulate." },
+      { "number": 6, "name": "Conspiracist", "description": "Weaves vast conspiracies that trap all involved." },
+      { "number": 5, "name": "Mentor", "description": "Guides others into dark bargains they cannot escape." },
+      { "number": 4, "name": "Baron of Corruption", "description": "A baron who spreads corruption and vice." },
+      { "number": 3, "name": "Desire Apostle", "description": "Weaponizes the desires of others against them." },
+      { "number": 2, "name": "Desire Embodiment", "description": "Becomes the living embodiment of desire and vice." },
+      { "number": 1, "name": "Inevitability", "description": "Their contracts become inescapable cosmic law." }
+    ]
+  },
+  {
+    "id": "tower",
+    "name": "The Tower",
+    "chineseName": "塔",
+    "tarotNumber": 16,
+    "description": "The pathway of fire, destruction, and explosive power. Tower users wield devastating elemental force.",
+    "color": "#E74C3C",
+    "sequences": [
+      { "number": 9, "name": "Arsonist", "description": "Controls fire with natural ease and precision." },
+      { "number": 8, "name": "Fire Mage", "description": "Wields fire magic for both offense and utility." },
+      { "number": 7, "name": "Destruction Mage", "description": "Channels pure destructive magical force." },
+      { "number": 6, "name": "Red Priest", "description": "A priest of the red fire who blesses and burns." },
+      { "number": 5, "name": "Scorching Shaman", "description": "Shamanic fire user with elemental communion." },
+      { "number": 4, "name": "Demon Hunter", "description": "Hunts demons with fire and explosive power." },
+      { "number": 3, "name": "Inextinguishable", "description": "Cannot be extinguished, burning eternally." },
+      { "number": 2, "name": "Infernal Lord", "description": "Commands infernal fire and heat at will." },
+      { "number": 1, "name": "World Burner", "description": "Possesses the power to burn the entire world." }
+    ]
+  },
+  {
+    "id": "star",
+    "name": "The Star",
+    "chineseName": "星星",
+    "tarotNumber": 17,
+    "description": "The pathway of the moon, mystery, and celestial navigation. Star users draw power from moonlight and celestial bodies.",
+    "color": "#5DADE2",
+    "sequences": [
+      { "number": 9, "name": "Sailor", "description": "Reads stars for navigation and gains sea-faring abilities." },
+      { "number": 8, "name": "Enfeebler", "description": "Weakens enemies through celestial curses." },
+      { "number": 7, "name": "Shaman", "description": "Communes with lunar and celestial spirits." },
+      { "number": 6, "name": "Lunatic", "description": "Draws power from lunar cycles and madness." },
+      { "number": 5, "name": "Werewolf", "description": "Transforms under lunar influence into a werewolf." },
+      { "number": 4, "name": "Moon Priest", "description": "A devoted priest of the moon wielding lunar power." },
+      { "number": 3, "name": "Potions Apprentice", "description": "Brews lunar-infused potions of great power." },
+      { "number": 2, "name": "Moon Ritualist", "description": "Performs powerful rituals under moonlight." },
+      { "number": 1, "name": "Moon", "description": "Becomes an avatar of the moon itself." }
+    ]
+  },
+  {
+    "id": "moon",
+    "name": "The Moon",
+    "chineseName": "月亮",
+    "tarotNumber": 18,
+    "description": "The pathway of evil dragons, corruption, and primal chaos. Moon users draw on draconic and corrupting power.",
+    "color": "#1E8BC3",
+    "sequences": [
+      { "number": 9, "name": "Dragon Seed", "description": "Bears the seed of draconic power within." },
+      { "number": 8, "name": "Chaos Hunter", "description": "Hunts through chaos and disorder." },
+      { "number": 7, "name": "Mind Corridor", "description": "Creates mental corridors to access hidden power." },
+      { "number": 6, "name": "Secret Sorcerer", "description": "Wields secret sorcery unknown to most." },
+      { "number": 5, "name": "Snake Blessed", "description": "Blessed by serpentine deities with venom and cunning." },
+      { "number": 4, "name": "Evil Dragon Priest", "description": "Serves evil dragons in exchange for corrupting power." },
+      { "number": 3, "name": "Soul Assimilator", "description": "Assimilates the souls of others to grow stronger." },
+      { "number": 2, "name": "Chaos Harbinger", "description": "Harbingers chaos wherever they go." },
+      { "number": 1, "name": "Evil Dragon", "description": "Becomes a full evil dragon of immense corrupting power." }
+    ]
+  },
+  {
+    "id": "sun",
+    "name": "The Sun",
+    "chineseName": "太阳",
+    "tarotNumber": 19,
+    "description": "The pathway of solar light, eternal vitality, and holy radiance. Sun users shine with divine brilliance.",
+    "color": "#F39C12",
+    "sequences": [
+      { "number": 9, "name": "Bard", "description": "Spreads solar joy and light through song and story." },
+      { "number": 8, "name": "Light Mage", "description": "Commands light magic of blinding power." },
+      { "number": 7, "name": "Solar Mage", "description": "Wields the full might of solar magical power." },
+      { "number": 6, "name": "Electrician", "description": "Commands lightning as an expression of solar energy." },
+      { "number": 5, "name": "Dawn Paladin", "description": "A paladin blazing with the light of dawn." },
+      { "number": 4, "name": "Unshadowed", "description": "Stands beyond the reach of all darkness." },
+      { "number": 3, "name": "Eternal Blazing Sun", "description": "Blazes with eternal solar radiance." },
+      { "number": 2, "name": "Sun Priest", "description": "A supreme priest of the sun with divine solar power." },
+      { "number": 1, "name": "Sun", "description": "Becomes an avatar of the sun itself." }
+    ]
+  },
+  {
+    "id": "world",
+    "name": "The World",
+    "chineseName": "世界",
+    "tarotNumber": 20,
+    "description": "The pathway of space, cosmos, and omnipresence. World users exist across all of space simultaneously.",
+    "color": "#27AE60",
+    "sequences": [
+      { "number": 9, "name": "Marauder", "description": "Ranges across vast distances with supernatural speed." },
+      { "number": 8, "name": "Escape Artist", "description": "Escapes any confinement and traverses any barrier." },
+      { "number": 7, "name": "Teleporter", "description": "Teleports self and others across any distance." },
+      { "number": 6, "name": "Omnipresent Seer", "description": "Sees across space to observe distant events." },
+      { "number": 5, "name": "Planeswalker", "description": "Walks between different planes of existence." },
+      { "number": 4, "name": "Spacetime Mage", "description": "Manipulates the fabric of spacetime." },
+      { "number": 3, "name": "World Door Keeper", "description": "Keeps the doors between worlds and controls passage." },
+      { "number": 2, "name": "Cosmos Traveler", "description": "Travels the cosmos at will." },
+      { "number": 1, "name": "The World", "description": "Encompasses the entire world in one's being." }
+    ]
+  },
+  {
+    "id": "judgment",
+    "name": "Judgment",
+    "chineseName": "审判",
+    "tarotNumber": 21,
+    "description": "The pathway of absolutism, final verdicts, and the end of all things. Judgment users pass final sentence on the cosmos.",
+    "color": "#BDC3C7",
+    "sequences": [
+      { "number": 9, "name": "Criminal", "description": "An agent of dark judgment working in the shadows." },
+      { "number": 8, "name": "Secrets Suppliant", "description": "Supplies secrets to bring about final judgment." },
+      { "number": 7, "name": "Cyclops", "description": "A one-eyed judge who sees absolute truth." },
+      { "number": 6, "name": "Inevitability", "description": "Embodies the inevitability of all endings." },
+      { "number": 5, "name": "Arcanist", "description": "Master of arcane knowledge that leads to final truths." },
+      { "number": 4, "name": "Absolute Solver", "description": "Solves all problems with absolute finality." },
+      { "number": 3, "name": "Doomsday Harbinger", "description": "Heralds the coming of final doomsday." },
+      { "number": 2, "name": "Judgment Ruler", "description": "Rules over the domain of final judgment." },
+      { "number": 1, "name": "Absolute Calamity", "description": "Becomes the ultimate calamity that ends all things." }
+    ]
+  }
+]

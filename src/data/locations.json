@@ -1,0 +1,130 @@
+[
+  {
+    "id": "backlund",
+    "name": "Backlund",
+    "description": "The grand capital of the Loen Kingdom. A city of fog and secrets where countless Beyonders walk the streets.",
+    "emoji": "🏙️",
+    "minLevel": 1,
+    "encounters": ["city_rat", "street_thug", "animated_puppet", "ghost"],
+    "resources": ["arcane_dust", "gold_coin_pouch", "rat_pelt"],
+    "events": [
+      "You find a discarded letter in the fog — it contains hints about a nearby Beyonder gathering.",
+      "A street vendor offers you a strange trinket. You sense Beyonder energy from it.",
+      "The fog thickens and you briefly glimpse a figure in a top hat watching you from a rooftop.",
+      "You overhear two men in cloaks discussing a secret meeting at the Tarot Club.",
+      "A constable tips you off about unusual supernatural activity in the East Borough."
+    ]
+  },
+  {
+    "id": "east_borough",
+    "name": "East Borough, Backlund",
+    "description": "The dark underbelly of Backlund, where the poor and desperate eke out a living alongside petty criminals and low-level Beyonders.",
+    "emoji": "🏚️",
+    "minLevel": 1,
+    "encounters": ["city_rat", "street_thug", "ghost"],
+    "resources": ["rat_pelt", "gold_coin_pouch", "minor_potion"],
+    "events": [
+      "You find a crumpled potion formula discarded behind a tavern.",
+      "A desperate thug tries to rob you but flees when you show your abilities.",
+      "A child slips something into your pocket — a small sealed vial with strange properties.",
+      "You witness a back-alley fight between two low-level Beyonders.",
+      "An old woman mutters a warning about 'the ones who watch from the fog.'"
+    ]
+  },
+  {
+    "id": "loen_countryside",
+    "name": "Loen Countryside",
+    "description": "Rolling hills and misty moorlands of the Loen Kingdom. Ancient ruins and forgotten graves dot the landscape.",
+    "emoji": "🌿",
+    "minLevel": 3,
+    "encounters": ["street_thug", "animated_puppet", "ghost", "werewolf"],
+    "resources": ["beast_hide", "moon_stone", "spirit_essence"],
+    "events": [
+      "You discover the ruins of an old church, its walls covered in faded murals.",
+      "A lone traveler warns you about a creature seen lurking in the eastern fields.",
+      "You find a buried chest containing old Loen coins and a partial potion recipe.",
+      "The ghost of a farmer approaches you, pleading for help settling their affairs.",
+      "You stumble upon evidence of a werewolf transformation — tracks and torn clothing."
+    ]
+  },
+  {
+    "id": "tingen",
+    "name": "Tingen City",
+    "description": "A mid-sized city in southern Loen, known for its textile mills and its unusual number of disappearances.",
+    "emoji": "🏭",
+    "minLevel": 5,
+    "encounters": ["animated_puppet", "ghost", "crimson_cult_member", "werewolf"],
+    "resources": ["arcane_dust", "spirit_essence", "crimson_ritual_scroll"],
+    "events": [
+      "Workers at the textile mill report hearing voices coming from the machines at night.",
+      "You find a pamphlet from the Eternal Blazing Sun Church warning of dark activity.",
+      "A suspicious man in red watches you from across the street before slipping away.",
+      "You discover a hidden shrine to the God of Calamity in a cellar.",
+      "A detective approaches you, needing help investigating a string of strange deaths."
+    ]
+  },
+  {
+    "id": "feynapotter",
+    "name": "Feynapotter",
+    "description": "A northern city near the Hornacis mountain range, known for its fog and mysterious disappearances near the mountains.",
+    "emoji": "⛰️",
+    "minLevel": 10,
+    "encounters": ["crimson_cult_member", "sea_creature", "corrupted_beyonder"],
+    "resources": ["moon_stone", "chaos_fragment", "deep_sea_scale"],
+    "events": [
+      "Locals whisper about lights seen moving on the mountain at night.",
+      "A scholar presents you with a fragment of pre-Fourth Epoch text.",
+      "You find a cave entrance that seems to lead deep into the Hornacis range.",
+      "Strange symbols have been carved into trees along the northern road.",
+      "A mountain guide tells you the fog here is different — older, more aware."
+    ]
+  },
+  {
+    "id": "rouen",
+    "name": "Rouen, Intis Republic",
+    "description": "The sophisticated capital of the Intis Republic, renowned for art, culture, and a thriving underground Beyonder community.",
+    "emoji": "🗼",
+    "minLevel": 15,
+    "encounters": ["corrupted_beyonder", "ancient_wraith", "evil_dragon_cultist"],
+    "resources": ["epoch_relic", "beyonder_characteristic", "sealed_article"],
+    "events": [
+      "A masked figure passes you a card — it's an invitation to an underground Beyonder auction.",
+      "You witness an assassination attempt on a Republic official, blocked by invisible forces.",
+      "A Beyonder art dealer offers to sell you a painting that seems to move when unobserved.",
+      "Rumors spread about a secret gathering of high-level Beyonders in the catacombs.",
+      "An Intis intelligence agent approaches you about a mutual threat."
+    ]
+  },
+  {
+    "id": "hornacis_mountains",
+    "name": "Hornacis Mountains",
+    "description": "The ancient, fog-shrouded mountains where primordial forces still hold sway. Extremely dangerous for low-level Beyonders.",
+    "emoji": "🗻",
+    "minLevel": 25,
+    "encounters": ["ancient_wraith", "evil_dragon_cultist", "demigod_fragment"],
+    "resources": ["demigod_essence", "epoch_relic", "dragon_scale_fragment"],
+    "events": [
+      "You find an entrance to a pre-Third Epoch ruin, partially consumed by the mountain.",
+      "A fragment of an ancient god's will touches your mind — overwhelming but enlightening.",
+      "You discover a cache of powerful artifacts from a long-dead Beyonder explorer.",
+      "The mountains seem to whisper in an ancient language you almost understand.",
+      "A demigod fragment approaches — it wants to make a deal."
+    ]
+  },
+  {
+    "id": "deep_sea",
+    "name": "The Deep Sea",
+    "description": "The terrifying depths of the ocean where Chaos reigns supreme and ancient leviathans sleep.",
+    "emoji": "🌊",
+    "minLevel": 30,
+    "encounters": ["sea_creature", "evil_dragon_cultist", "demigod_fragment"],
+    "resources": ["chaos_fragment", "abyssal_essence", "deep_sea_scale"],
+    "events": [
+      "Something massive moves beneath you — you sense its consciousness briefly touch yours.",
+      "You find a sunken ship from the Second Epoch, its cargo impossibly preserved.",
+      "Chaos energy crystallizes around you, offering dangerous power if you dare touch it.",
+      "An ancient mermaid being offers you forbidden knowledge in exchange for a service.",
+      "You encounter a sealed artifact floating in the deep — its power is immense and terrifying."
+    ]
+  }
+]
