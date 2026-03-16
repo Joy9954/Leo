@@ -1,0 +1,55 @@
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+import { Command } from '../../client/BotClient';
+import { getCharacter, getInventory, equipItem } from '../../database/PlayerRepository';
+import itemsData from '../../data/items.json';
+import { errorEmbed, successEmbed } from '../../utils/embeds';
+
+type ItemEntry = { id: string; name: string; type: string; subtype: string; requiredLevel: number; emoji: string };
+const allItems: ItemEntry[] = [
+  ...(itemsData.weapons as ItemEntry[]),
+  ...(itemsData.armor as ItemEntry[]),
+];
+
+const command: Command = {
+  data: new SlashCommandBuilder()
+    .setName('equip')
+    .setDescription('Equip a weapon or armor from your inventory')
+    .addStringOption(opt =>
+      opt.setName('item').setDescription('The item ID to equip').setRequired(true)
+    ),
+
+  async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+    const char = getCharacter(interaction.user.id);
+    if (!char) {
+      await interaction.reply({ embeds: [errorEmbed('No character found.')], ephemeral: true });
+      return;
+    }
+
+    const itemId = interaction.options.getString('item', true).toLowerCase().replace(/ /g, '_');
+    const inv = getInventory(interaction.user.id);
+    const invItem = inv.find(i => i.item_id === itemId);
+
+    if (!invItem) {
+      await interaction.reply({ embeds: [errorEmbed(`You don't have **${itemId}** in your inventory.`)], ephemeral: true });
+      return;
+    }
+
+    const itemDef = allItems.find(i => i.id === itemId);
+    if (!itemDef) {
+      await interaction.reply({ embeds: [errorEmbed('This item cannot be equipped.')], ephemeral: true });
+      return;
+    }
+
+    if (char.level < itemDef.requiredLevel) {
+      await interaction.reply({ embeds: [errorEmbed(`You need to be level ${itemDef.requiredLevel} to equip this item.`)], ephemeral: true });
+      return;
+    }
+
+    const slot = itemDef.type === 'weapon' ? 'weapon' : 'armor';
+    equipItem(interaction.user.id, itemId, slot);
+
+    await interaction.reply({ embeds: [successEmbed(`You equipped ${itemDef.emoji} **${itemDef.name}**!`)] });
+  },
+};
+
+export default command;

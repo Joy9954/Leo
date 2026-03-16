@@ -1,0 +1,102 @@
+[
+  {
+    "id": "first_steps",
+    "name": "First Steps as a Beyonder",
+    "description": "Every Beyonder must start somewhere. Prove yourself by defeating your first monster.",
+    "type": "story",
+    "objectives": [
+      { "type": "defeat_monster", "target": "city_rat", "count": 1, "description": "Defeat 1 Giant City Rat" }
+    ],
+    "rewards": { "xp": 50, "gold": 30, "items": ["minor_potion"] },
+    "minLevel": 1,
+    "prerequisiteQuests": []
+  },
+  {
+    "id": "sewer_investigation",
+    "name": "Sewer Investigation",
+    "description": "The Backlund police have received reports of unusual activity in the sewers. Investigate and clear it out.",
+    "type": "story",
+    "objectives": [
+      { "type": "defeat_monster", "target": "city_rat", "count": 3, "description": "Defeat 3 Giant City Rats" },
+      { "type": "defeat_monster", "target": "street_thug", "count": 2, "description": "Defeat 2 Street Thugs" }
+    ],
+    "rewards": { "xp": 150, "gold": 100, "items": ["healing_potion", "leather_vest"] },
+    "minLevel": 2,
+    "prerequisiteQuests": ["first_steps"]
+  },
+  {
+    "id": "ghost_haunting",
+    "name": "The Haunted Estate",
+    "description": "A noble family is being terrorized by a ghost in their estate. Help them and earn a reward.",
+    "type": "story",
+    "objectives": [
+      { "type": "defeat_monster", "target": "ghost", "count": 2, "description": "Exorcise 2 Restless Ghosts" }
+    ],
+    "rewards": { "xp": 200, "gold": 150, "items": ["spirit_tonic", "flintlock_pistol"] },
+    "minLevel": 5,
+    "prerequisiteQuests": ["sewer_investigation"]
+  },
+  {
+    "id": "cult_hunt",
+    "name": "Crimson Cult Disruption",
+    "description": "The Church of the Eternal Blazing Sun has tasked you with disrupting a Crimson Cult cell.",
+    "type": "story",
+    "objectives": [
+      { "type": "defeat_monster", "target": "crimson_cult_member", "count": 5, "description": "Defeat 5 Crimson Cult Members" }
+    ],
+    "rewards": { "xp": 500, "gold": 300, "items": ["silver_revolver", "advanced_healing_potion"] },
+    "minLevel": 10,
+    "prerequisiteQuests": ["ghost_haunting"]
+  },
+  {
+    "id": "deep_sea_threat",
+    "name": "Threat from the Deep",
+    "description": "Strange creatures have been appearing along the coastline. Investigate and push them back.",
+    "type": "story",
+    "objectives": [
+      { "type": "defeat_monster", "target": "sea_creature", "count": 3, "description": "Defeat 3 Deep Sea Abominations" }
+    ],
+    "rewards": { "xp": 800, "gold": 500, "items": ["ancient_rune_blade", "mystical_robes"] },
+    "minLevel": 15,
+    "prerequisiteQuests": ["cult_hunt"]
+  },
+  {
+    "id": "daily_combat",
+    "name": "Daily Patrol",
+    "description": "Maintain your combat skills by defeating enemies in your area.",
+    "type": "daily",
+    "objectives": [
+      { "type": "any_combat", "count": 5, "description": "Win 5 combat encounters" }
+    ],
+    "rewards": { "xp": 100, "gold": 50, "items": [] },
+    "minLevel": 1,
+    "prerequisiteQuests": [],
+    "resetHours": 24
+  },
+  {
+    "id": "daily_explore",
+    "name": "Daily Exploration",
+    "description": "Explore the world and gather resources.",
+    "type": "daily",
+    "objectives": [
+      { "type": "explore", "count": 3, "description": "Explore 3 times" }
+    ],
+    "rewards": { "xp": 75, "gold": 40, "items": [] },
+    "minLevel": 1,
+    "prerequisiteQuests": [],
+    "resetHours": 24
+  },
+  {
+    "id": "tarot_initiation",
+    "name": "Tarot Club Initiation",
+    "description": "The mysterious Tarot Club has noticed your potential. Prove your worth to join their ranks.",
+    "type": "special",
+    "objectives": [
+      { "type": "reach_sequence", "target": 7, "description": "Advance to Sequence 7" },
+      { "type": "any_combat", "count": 20, "description": "Win 20 combat encounters" }
+    ],
+    "rewards": { "xp": 1000, "gold": 800, "items": ["beyond_potion_fragment"], "special": "tarot_membership" },
+    "minLevel": 10,
+    "prerequisiteQuests": ["ghost_haunting"]
+  }
+]
