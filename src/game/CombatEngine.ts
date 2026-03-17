@@ -1,6 +1,5 @@
-import { Character } from '../database/PlayerRepository';
+import { Character, getCustomItems, getSetting } from '../database/PlayerRepository';
 import itemsData from '../data/items.json';
-import { getCustomItems } from '../database/PlayerRepository';
 
 export interface CombatResult {
   rounds: CombatRound[];
@@ -131,8 +130,11 @@ export function runPveCombat(
   }
 
   const playerWon = monsterHp <= 0;
-  const goldGained = playerWon ? rollDice(monster.goldMin, monster.goldMax) : 0;
-  const xpGained = playerWon ? monster.xpReward + Math.floor(char.level * 2) : Math.floor(monster.xpReward * 0.1);
+  const goldRate = parseFloat(getSetting('gold_rate', '1.0'));
+  const xpRate = parseFloat(getSetting('xp_rate', '1.0'));
+  
+  const goldGained = playerWon ? Math.floor(rollDice(monster.goldMin, monster.goldMax) * goldRate) : 0;
+  const xpGained = playerWon ? Math.floor((monster.xpReward + Math.floor(char.level * 2)) * xpRate) : Math.floor(monster.xpReward * 0.1 * xpRate);
 
   const lootGained: string[] = [];
   if (playerWon && monster.loot.length > 0) {
