@@ -3,6 +3,7 @@ import { getDatabase } from './Database';
 export interface Player {
   id: string;
   username: string;
+  banned: number;
   created_at: number;
 }
 
@@ -52,6 +53,51 @@ export function upsertPlayer(id: string, username: string): void {
 export function getPlayer(id: string): Player | undefined {
   const db = getDatabase();
   return db.prepare('SELECT * FROM players WHERE id = ?').get(id) as Player | undefined;
+}
+
+export function getAllPlayers(): Player[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM players').all() as Player[];
+}
+
+export function banPlayer(id: string): void {
+  const db = getDatabase();
+  db.prepare('UPDATE players SET banned = 1 WHERE id = ?').run(id);
+}
+
+export function unbanPlayer(id: string): void {
+  const db = getDatabase();
+  db.prepare('UPDATE players SET banned = 0 WHERE id = ?').run(id);
+}
+
+export function isPlayerBanned(id: string): boolean {
+  const player = getPlayer(id);
+  return player?.banned === 1;
+}
+
+export function resetPlayer(id: string): void {
+  const db = getDatabase();
+  db.prepare('DELETE FROM characters WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM inventory WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM quests WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM cooldowns WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM pvp_challenges WHERE challenger_id = ? OR challenged_id = ?').run(id, id);
+  db.prepare('DELETE FROM combat_log WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM pets WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM casino_games WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM daily_pulls WHERE player_id = ?').run(id);
+  db.prepare('DELETE FROM trades WHERE offerer_id = ? OR receiver_id = ?').run(id, id);
+}
+
+export function setSetting(key: string, value: string): void {
+  const db = getDatabase();
+  db.prepare('INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value').run(key, value);
+}
+
+export function getSetting(key: string, defaultValue: string): string {
+  const db = getDatabase();
+  const setting = db.prepare('SELECT value FROM settings WHERE key = ?').get(key) as { value: string } | undefined;
+  return setting ? setting.value : defaultValue;
 }
 
 export function getCharacter(playerId: string): Character | undefined {
@@ -340,10 +386,18 @@ export function getCustomItem(itemId: string): CustomItem | undefined {
   return db.prepare('SELECT * FROM custom_items WHERE id = ?').get(itemId) as CustomItem | undefined;
 }
 
-export function deleteCustomItem(itemId: string, createdBy: string): boolean {
+export function deleteCustomItem(itemId: string, createdBy?: string): boolean {
   const db = getDatabase();
   const item = getCustomItem(itemId);
-  if (!item || item.created_by !== createdBy) return false;
+  if (!item) return false;
+  if (createdBy && item.created_by !== createdBy) {
+    // If it's NOT an admin, check if they created it.
+    // Wait, the repository shouldn't really check for admin.
+    // I'll make the second argument optional and only check if provided.
+    if (createdBy !== 'ADMIN_OVERRIDE' && item.created_by !== createdBy) {
+       return false;
+    }
+  }
   db.prepare('DELETE FROM custom_items WHERE id = ?').run(itemId);
   return true;
 }
@@ -488,6 +542,11 @@ export function updateRaidHealth(raidId: number, newHealth: number): void {
   const health = Math.max(0, newHealth);
   const status = health <= 0 ? 'completed' : 'active';
   db.prepare('UPDATE raids SET current_health = ?, status = ? WHERE id = ?').run(health, status, raidId);
+}
+
+export function endRaid(raidId: number): void {
+  const db = getDatabase();
+  db.prepare("UPDATE raids SET status = 'completed' WHERE id = ?").run(raidId);
 }
 
 export function getRaidParticipants(raidId: number): RaidParticipant[] {

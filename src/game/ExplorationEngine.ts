@@ -1,6 +1,6 @@
 import locationsData from '../data/locations.json';
 import monstersData from '../data/monsters.json';
-import { Character } from '../database/PlayerRepository';
+import { Character, getSetting } from '../database/PlayerRepository';
 
 export interface LocationDef {
   id: string;
@@ -77,8 +77,10 @@ export function explore(char: Character): ExplorationResult {
   }
 
   const roll = Math.random();
+  const spawnRate = parseFloat(getSetting('spawn_rate', '1.0'));
+  const goldRate = parseFloat(getSetting('gold_rate', '1.0'));
 
-  if (roll < 0.35) {
+  if (roll < 0.35 * spawnRate) {
     const monster = getLocationMonster(char.location, char.level);
     if (monster) {
       return {
@@ -89,14 +91,14 @@ export function explore(char: Character): ExplorationResult {
     }
   }
 
-  if (roll < 0.60 && location.resources.length > 0) {
+  if (roll < 0.60 * (spawnRate > 1 ? 1 : spawnRate) && location.resources.length > 0) {
     const count = Math.floor(Math.random() * 2) + 1;
     const foundResources: string[] = [];
     for (let i = 0; i < count; i++) {
       const res = location.resources[Math.floor(Math.random() * location.resources.length)];
       foundResources.push(res);
     }
-    const goldFound = Math.floor(Math.random() * 20) + 5;
+    const goldFound = Math.floor((Math.random() * 20 + 5) * goldRate);
     return {
       type: 'resource',
       message: `🔍 You search the area carefully and find some useful materials.`,

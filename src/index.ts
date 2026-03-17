@@ -18,8 +18,7 @@ import useCommand from './commands/economy/use';
 import questCommand from './commands/quest/quests';
 import tarotCommand from './commands/tarot/tarot';
 import helpCommand from './commands/help';
-import addItemCommand from './commands/admin/add-item';
-import listItemsCommand from './commands/admin/list-items';
+import adminCommand from './commands/admin/admin';
 
 // Pet Commands
 import petListCommand from './commands/pets/pet_list';
@@ -48,9 +47,10 @@ import casinoSlotsCommand from './commands/casino/casino_slots';
 import tradeOfferCommand from './commands/casino/trade_offer';
 import tradeAcceptCommand from './commands/casino/trade_accept';
 
-// Initialize data
 import { getDatabase } from './database/Database';
 import { initializeRecipes } from './game/CraftingEngine';
+import { isPlayerBanned } from './database/PlayerRepository';
+import { errorEmbed } from './utils/embeds';
 
 getDatabase();
 initializeRecipes();
@@ -72,8 +72,7 @@ const allCommands = [
   questCommand,
   tarotCommand,
   helpCommand,
-  addItemCommand,
-  listItemsCommand,
+  adminCommand,
   // Pet Commands
   petListCommand,
   petTameCommand,
@@ -107,6 +106,11 @@ client.once(Events.ClientReady, async (readyClient) => {
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
+  if (isPlayerBanned(interaction.user.id)) {
+    await interaction.reply({ embeds: [errorEmbed('You have been banned from using this bot.')], ephemeral: true });
+    return;
+  }
+
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
 
@@ -127,6 +131,11 @@ const PREFIX = '!';
 
 client.on(Events.MessageCreate, async (message: Message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
+
+  if (isPlayerBanned(message.author.id)) {
+    await message.reply({ embeds: [errorEmbed('You have been banned from using this bot.')] });
+    return;
+  }
 
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
   const commandName = args.shift()?.toLowerCase();
@@ -151,8 +160,7 @@ client.on(Events.MessageCreate, async (message: Message) => {
     'quests': 'quest',
     'tarot': 'tarot',
     'help': 'help',
-    'a-add-item': 'a-add-item',
-    'a-list-items': 'a-list-items',
+    'admin': 'admin',
     // Pet Commands
     'pet': 'pet_list',
     'pets': 'pet_list',
@@ -213,26 +221,11 @@ client.on(Events.MessageCreate, async (message: Message) => {
                      commandName === 'use' && name === 'item' ? 0 :
                      commandName === 'quest' && name === 'quest_id' ? 0 :
                      commandName === 'tarot' && name === 'name' ? 0 :
-                     commandName === 'a-add-item' && name === 'id' ? 0 :
-                     commandName === 'a-add-item' && name === 'name' ? 1 :
-                     commandName === 'a-add-item' && name === 'type' ? 2 :
-                     commandName === 'a-add-item' && name === 'description' ? 3 :
-                     commandName === 'a-add-item' && name === 'price' ? 4 :
-                     commandName === 'a-add-item' && name === 'emoji' ? 5 :
-                     commandName === 'a-list-items' && name === 'action' ? 0 :
-                     commandName === 'a-list-items' && name === 'item_id' ? 1 :
                      -1;
         return index >= 0 && args[index] ? args[index] : (required ? null : undefined);
       },
       getInteger: (name: string) => {
         const index = commandName === 'pvp' && name === 'wager' ? 1 :
-                     commandName === 'a-add-item' && name === 'attack_bonus' ? 6 :
-                     commandName === 'a-add-item' && name === 'defense_bonus' ? 6 :
-                     commandName === 'a-add-item' && name === 'spirit_bonus' ? 7 :
-                     commandName === 'a-add-item' && name === 'heal_amount' ? 6 :
-                     commandName === 'a-add-item' && name === 'spirit_restore' ? 7 :
-                     commandName === 'a-add-item' && name === 'xp_bonus' ? 8 :
-                     commandName === 'a-add-item' && name === 'required_level' ? 9 :
                      -1;
         return index >= 0 && args[index] ? parseInt(args[index]) : undefined;
       },
