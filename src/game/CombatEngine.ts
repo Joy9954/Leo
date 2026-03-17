@@ -39,7 +39,7 @@ function rollDice(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getEquippedAttackBonus(equipped: { item_id: string }[]): number {
+export function getEquippedAttackBonus(equipped: { item_id: string }[]): number {
   let bonus = 0;
   const allWeapons = [
     ...(itemsData.weapons as Array<{ id: string; attackBonus: number }>),
@@ -52,7 +52,7 @@ function getEquippedAttackBonus(equipped: { item_id: string }[]): number {
   return bonus;
 }
 
-function getEquippedDefenseBonus(equipped: { item_id: string }[]): number {
+export function getEquippedDefenseBonus(equipped: { item_id: string }[]): number {
   let bonus = 0;
   const allArmor = [
     ...(itemsData.armor as Array<{ id: string; defenseBonus: number }>),
