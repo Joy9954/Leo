@@ -62,6 +62,49 @@ const command: Command = {
           inline: false,
         },
         {
+          name: '🐾 Pet Commands',
+          value: [
+            '`/pet_list` — List all your tamed pets',
+            '`/pet_tame` — Attempt to tame a creature',
+            '`/pet_release <pet_id>` — Release a pet',
+            '`/pet_stats <pet_id>` — View pet statistics',
+            '`/pet_setactive <pet_id>` — Set a pet as your active companion',
+          ].join('\n'),
+          inline: false,
+        },
+        {
+          name: '⚗️ Crafting Commands',
+          value: [
+            '`/craft_list` — View available crafting recipes',
+            '`/craft_create <recipe_id>` — Craft an item from materials',
+            '`/craft_extract <item_id>` — Extract essence from items',
+            '`/craft_brewluck` — Brew a luck potion for bonuses',
+          ].join('\n'),
+          inline: false,
+        },
+        {
+          name: '🏰 Raid Commands',
+          value: [
+            '`/raid_list` — View available raid bosses',
+            '`/raid_join <raid_id>` — Join a raid party',
+            '`/raid_status` — Check current raid status',
+            '`/raid_attack` — Attack the raid boss',
+          ].join('\n'),
+          inline: false,
+        },
+        {
+          name: '🎰 Casino & Trade Commands',
+          value: [
+            '`/casino_dice <amount> <guess>` — Bet on dice roll (1-6)',
+            '`/casino_roulette <amount> <type>` — Play roulette',
+            '`/casino_slots <amount>` — Spin the slot machine',
+            '`/casino_daily` — Claim your daily reward',
+            '`/trade_offer @user <item_id>` — Offer an item for trade',
+            '`/trade_accept <trade_id>` — Accept a pending trade',
+          ].join('\n'),
+          inline: false,
+        },
+        {
           name: '🃏 Tarot & Info Commands',
           value: [
             '`/tarot club` — View the Tarot Club members',
@@ -74,8 +117,13 @@ const command: Command = {
         {
           name: '👑 Admin Commands (Server Admins Only)',
           value: [
-            '`/a-add-item` or `!a-add-item` — Add custom weapons, armor, or consumables',
-            '`/a-list-items` or `!a-list-items` — List or delete custom items',
+            '`/a-add-item` — Add custom weapons, armor, or consumables',
+            '`/a-list-items` — List or delete custom items',
+            '`/a-give-gold @user <amount>` — Give gold to a player',
+            '`/a-remove-gold @user <amount>` — Remove gold from a player',
+            '`/a-reset-player @user` — Reset a player character',
+            '`/a-spawn-raid` — Spawn a new raid boss',
+            '`/a-end-raid <raid_id>` — End an active raid',
           ].join('\n'),
           inline: false,
         },
