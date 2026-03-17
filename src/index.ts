@@ -21,6 +21,40 @@ import helpCommand from './commands/help';
 import addItemCommand from './commands/admin/add-item';
 import listItemsCommand from './commands/admin/list-items';
 
+// Pet Commands
+import petListCommand from './commands/pets/pet_list';
+import petTameCommand from './commands/pets/pet_tame';
+import petReleaseCommand from './commands/pets/pet_release';
+import petStatsCommand from './commands/pets/pet_stats';
+import petSetActiveCommand from './commands/pets/pet_setactive';
+
+// Crafting Commands
+import craftListCommand from './commands/crafting/craft_list';
+import craftCreateCommand from './commands/crafting/craft_create';
+import craftExtractCommand from './commands/crafting/craft_extract';
+import craftBrewLuckCommand from './commands/crafting/craft_brewluck';
+
+// Raid Commands
+import raidListCommand from './commands/raids/raid_list';
+import raidJoinCommand from './commands/raids/raid_join';
+import raidStatusCommand from './commands/raids/raid_status';
+import raidAttackCommand from './commands/raids/raid_attack';
+
+// Casino Commands
+import casinoDiceCommand from './commands/casino/casino_dice';
+import casinoRouletteCommand from './commands/casino/casino_roulette';
+import casinoDailyCommand from './commands/casino/casino_daily';
+import casinoSlotsCommand from './commands/casino/casino_slots';
+import tradeOfferCommand from './commands/casino/trade_offer';
+import tradeAcceptCommand from './commands/casino/trade_accept';
+
+// Initialize data
+import { getDatabase } from './database/Database';
+import { initializeRecipes } from './game/CraftingEngine';
+
+getDatabase();
+initializeRecipes();
+
 const client = new BotClient();
 
 const allCommands = [
@@ -40,6 +74,29 @@ const allCommands = [
   helpCommand,
   addItemCommand,
   listItemsCommand,
+  // Pet Commands
+  petListCommand,
+  petTameCommand,
+  petReleaseCommand,
+  petStatsCommand,
+  petSetActiveCommand,
+  // Crafting Commands
+  craftListCommand,
+  craftCreateCommand,
+  craftExtractCommand,
+  craftBrewLuckCommand,
+  // Raid Commands
+  raidListCommand,
+  raidJoinCommand,
+  raidStatusCommand,
+  raidAttackCommand,
+  // Casino Commands
+  casinoDiceCommand,
+  casinoRouletteCommand,
+  casinoDailyCommand,
+  casinoSlotsCommand,
+  tradeOfferCommand,
+  tradeAcceptCommand,
 ];
 
 client.once(Events.ClientReady, async (readyClient) => {
@@ -96,6 +153,35 @@ client.on(Events.MessageCreate, async (message: Message) => {
     'help': 'help',
     'a-add-item': 'a-add-item',
     'a-list-items': 'a-list-items',
+    // Pet Commands
+    'pet': 'pet_list',
+    'pets': 'pet_list',
+    'pet_tame': 'pet_tame',
+    'pet_release': 'pet_release',
+    'pet_stats': 'pet_stats',
+    'pet_active': 'pet_setactive',
+    // Crafting Commands
+    'craft': 'craft_list',
+    'crafts': 'craft_list',
+    'craft_list': 'craft_list',
+    'craft_create': 'craft_create',
+    'craft_extract': 'craft_extract',
+    'craft_brewluck': 'craft_brewluck',
+    // Raid Commands
+    'raid': 'raid_list',
+    'raids': 'raid_list',
+    'raid_list': 'raid_list',
+    'raid_join': 'raid_join',
+    'raid_status': 'raid_status',
+    'raid_attack': 'raid_attack',
+    // Casino Commands
+    'dice': 'casino_dice',
+    'roulette': 'casino_roulette',
+    'slots': 'casino_slots',
+    'daily': 'casino_daily',
+    'trade': 'trade_offer',
+    'trade_offer': 'trade_offer',
+    'trade_accept': 'trade_accept',
   };
 
   const slashCommandName = commandMap[commandName];

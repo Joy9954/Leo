@@ -1,0 +1,141 @@
+{
+  "pets": [
+    {
+      "id": "gray_moth",
+      "name": "Gray Moth",
+      "rarity": "common",
+      "description": "A mysterious moth drawn to spiritual energy. Common in the Spirit World.",
+      "baseAttack": 3,
+      "baseDefense": 2,
+      "baseHealth": 20,
+      "loyaltyGain": 10,
+      "tameChance": 0.6,
+      "emoji": "🦋",
+      "type": "spirit"
+    },
+    {
+      "id": "wandering_spirit",
+      "name": "Wandering Spirit",
+      "rarity": "common",
+      "description": "A lost soul seeking a companion in the mortal realm.",
+      "baseAttack": 4,
+      "baseDefense": 1,
+      "baseHealth": 15,
+      "loyaltyGain": 8,
+      "tameChance": 0.5,
+      "emoji": "👻",
+      "type": "spirit"
+    },
+    {
+      "id": "shadow_cat",
+      "name": "Shadow Cat",
+      "rarity": "rare",
+      "description": "A feline creature from the Twilight Realm, able to blend with shadows.",
+      "baseAttack": 8,
+      "baseDefense": 5,
+      "baseHealth": 40,
+      "loyaltyGain": 15,
+      "tameChance": 0.35,
+      "emoji": "🐈‍⬛",
+      "type": "beast"
+    },
+    {
+      "id": "flame_fairy",
+      "name": "Flame Fairy",
+      "rarity": "rare",
+      "description": "A tiny being born of pure fire, brings warmth to its master.",
+      "baseAttack": 10,
+      "baseDefense": 3,
+      "baseHealth": 25,
+      "loyaltyGain": 12,
+      "tameChance": 0.3,
+      "emoji": "🧚",
+      "type": "elemental"
+    },
+    {
+      "id": "iron_golem",
+      "name": "Iron Golem",
+      "rarity": "epic",
+      "description": "An ancient construct forged from living iron. Extremely loyal.",
+      "baseAttack": 15,
+      "baseDefense": 20,
+      "baseHealth": 100,
+      "loyaltyGain": 20,
+      "tameChance": 0.15,
+      "emoji": "🗿",
+      "type": "construct"
+    },
+    {
+      "id": "frost_dragon_whelp",
+      "name": "Frost Dragon Whelp",
+      "rarity": "epic",
+      "description": "A young dragon with control over ice. Rare and powerful.",
+      "baseAttack": 18,
+      "baseDefense": 12,
+      "baseHealth": 80,
+      "loyaltyGain": 18,
+      "tameChance": 0.12,
+      "emoji": "🐲",
+      "type": "dragon"
+    },
+    {
+      "id": "holy_griffin",
+      "name": "Holy Griffin",
+      "rarity": "legendary",
+      "description": "A majestic creature with the body of a lion and wings of an eagle.",
+      "baseAttack": 25,
+      "baseDefense": 18,
+      "baseHealth": 120,
+      "loyaltyGain": 25,
+      "tameChance": 0.08,
+      "emoji": "🦅",
+      "type": "mythical"
+    },
+    {
+      "id": "chaos_beast",
+      "name": "Chaos Beast",
+      "rarity": "legendary",
+      "description": "A creature from the chaos sea, embodying pure randomness.",
+      "baseAttack": 22,
+      "baseDefense": 15,
+      "baseHealth": 100,
+      "loyaltyGain": 22,
+      "tameChance": 0.06,
+      "emoji": "🦄",
+      "type": "mythical"
+    },
+    {
+      "id": "ancient_turtle",
+      "name": "Ancient Turtle",
+      "rarity": "mythical",
+      "description": "A turtle that has existed since the First Epoch. Immense wisdom.",
+      "baseAttack": 12,
+      "baseDefense": 35,
+      "baseHealth": 200,
+      "loyaltyGain": 30,
+      "tameChance": 0.03,
+      "emoji": "🐢",
+      "type": "ancient"
+    },
+    {
+      "id": "celestial_phoenix",
+      "name": "Celestial Phoenix",
+      "rarity": "mythical",
+      "description": "A divine bird that rises from its ashes. The ultimate companion.",
+      "baseAttack": 35,
+      "baseDefense": 20,
+      "baseHealth": 150,
+      "loyaltyGain": 35,
+      "tameChance": 0.02,
+      "emoji": "🔥",
+      "type": "divine"
+    }
+  ],
+  "rarityBonuses": {
+    "common": { "attack": 1.0, "defense": 1.0, "health": 1.0 },
+    "rare": { "attack": 1.3, "defense": 1.3, "health": 1.3 },
+    "epic": { "attack": 1.6, "defense": 1.6, "health": 1.6 },
+    "legendary": { "attack": 2.0, "defense": 2.0, "health": 2.0 },
+    "mythical": { "attack": 2.5, "defense": 2.5, "health": 2.5 }
+  }
+}

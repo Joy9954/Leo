@@ -1,0 +1,100 @@
+{
+  "raids": [
+    {
+      "id": "evil_dragon",
+      "name": "Evil Dragon - Sauron",
+      "description": "An ancient evil dragon that has terrorized the Loen Kingdom for centuries.",
+      "health": 10000,
+      "attack": 150,
+      "defense": 80,
+      "emoji": "🐉",
+      "minLevel": 20,
+      "duration": 3600,
+      "rewards": {
+        "xp": 5000,
+        "gold": 5000,
+        "items": ["dragon_scale_fragment", "draconic_essence", "demigod_essence"]
+      }
+    },
+    {
+      "id": "guler",
+      "name": "Guler - The Abyssal Horror",
+      "description": "A terrifying creature from the deep sea that has awakened from its slumber.",
+      "health": 8000,
+      "attack": 120,
+      "defense": 60,
+      "emoji": "🦑",
+      "minLevel": 15,
+      "duration": 3000,
+      "rewards": {
+        "xp": 3500,
+        "gold": 3500,
+        "items": ["deep_sea_scale", "abyssal_essence", "chaos_fragment"]
+      }
+    },
+    {
+      "id": "dark_prophet",
+      "name": "Dark Prophet - Fallen Seer",
+      "description": "A once-great oracle who fell into darkness and now spreads corruption.",
+      "health": 6000,
+      "attack": 100,
+      "defense": 50,
+      "emoji": "👁️",
+      "minLevel": 12,
+      "duration": 2400,
+      "rewards": {
+        "xp": 2500,
+        "gold": 2500,
+        "items": ["cult_grimoire", "crimson_ritual_scroll", "ancient_soul_crystal"]
+      }
+    },
+    {
+      "id": "titan_golem",
+      "name": "Titan Golem - Ancient Sentinel",
+      "description": "A massive construct from the Fourth Epoch, awakened by dark magic.",
+      "health": 12000,
+      "attack": 80,
+      "defense": 120,
+      "emoji": "🗿",
+      "minLevel": 25,
+      "duration": 4200,
+      "rewards": {
+        "xp": 6000,
+        "gold": 6000,
+        "items": ["mythic_relic", "epoch_relic", "beyonder_characteristic"]
+      }
+    },
+    {
+      "id": "demon_lord",
+      "name": "Demon Lord - Prince of Calamity",
+      "description": "A powerful demon who seeks to plunge the world into eternal darkness.",
+      "health": 15000,
+      "attack": 180,
+      "defense": 90,
+      "emoji": "👹",
+      "minLevel": 30,
+      "duration": 4800,
+      "rewards": {
+        "xp": 8000,
+        "gold": 8000,
+        "items": ["demigod_essence", "divinity_fragment", "mythic_relic"]
+      }
+    },
+    {
+      "id": "reanimated_giant",
+      "name": "Reanimated Giant - Frost King",
+      "description": "An ancient giant reanimated by dark rituals, rampaging across the northern lands.",
+      "health": 7000,
+      "attack": 110,
+      "defense": 70,
+      "emoji": "🧊",
+      "minLevel": 18,
+      "duration": 2800,
+      "rewards": {
+        "xp": 3000,
+        "gold": 3000,
+        "items": ["epoch_relic", "beast_hide", "moon_stone"]
+      }
+    }
+  ]
+}

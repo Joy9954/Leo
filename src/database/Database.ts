@@ -127,6 +127,85 @@ function initializeSchema(db: Database.Database): void {
       created_at INTEGER NOT NULL DEFAULT (unixepoch()),
       FOREIGN KEY (created_by) REFERENCES players(id) ON DELETE CASCADE
     );
+
+    -- Pets System
+    CREATE TABLE IF NOT EXISTS pets (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id TEXT NOT NULL,
+      pet_id TEXT NOT NULL,
+      nickname TEXT,
+      level INTEGER DEFAULT 1,
+      loyalty INTEGER DEFAULT 50,
+      is_active INTEGER DEFAULT 0,
+      earned_xp INTEGER DEFAULT 0,
+      FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE
+    );
+
+    -- Crafting Recipes
+    CREATE TABLE IF NOT EXISTS recipes (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      type TEXT NOT NULL,
+      materials TEXT NOT NULL,
+      result_id TEXT NOT NULL,
+      result_quantity INTEGER DEFAULT 1,
+      required_level INTEGER DEFAULT 1,
+      description TEXT
+    );
+
+    -- Raids
+    CREATE TABLE IF NOT EXISTS raids (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      raid_id TEXT NOT NULL,
+      spawn_time INTEGER NOT NULL,
+      end_time INTEGER NOT NULL,
+      current_health INTEGER NOT NULL,
+      max_health INTEGER NOT NULL,
+      status TEXT DEFAULT 'active'
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_participants (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      raid_id INTEGER NOT NULL,
+      player_id TEXT NOT NULL,
+      damage_dealt INTEGER DEFAULT 0,
+      joined_at INTEGER DEFAULT (unixepoch()),
+      FOREIGN KEY (raid_id) REFERENCES raids(id) ON DELETE CASCADE,
+      FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE
+    );
+
+    -- Casino
+    CREATE TABLE IF NOT EXISTS casino_games (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id TEXT NOT NULL,
+      game_type TEXT NOT NULL,
+      bet_amount INTEGER NOT NULL,
+      result TEXT NOT NULL,
+      winnings INTEGER DEFAULT 0,
+      created_at INTEGER DEFAULT (unixepoch()),
+      FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS daily_pulls (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id TEXT NOT NULL,
+      pulled_at INTEGER DEFAULT (unixepoch())
+    );
+
+    -- Trading
+    CREATE TABLE IF NOT EXISTS trades (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      offerer_id TEXT NOT NULL,
+      receiver_id TEXT NOT NULL,
+      offered_items TEXT,
+      offered_gold INTEGER DEFAULT 0,
+      requested_items TEXT,
+      requested_gold INTEGER DEFAULT 0,
+      status TEXT DEFAULT 'pending',
+      created_at INTEGER DEFAULT (unixepoch()),
+      FOREIGN KEY (offerer_id) REFERENCES players(id) ON DELETE CASCADE,
+      FOREIGN KEY (receiver_id) REFERENCES players(id) ON DELETE CASCADE
+    );
   `);
 }
 

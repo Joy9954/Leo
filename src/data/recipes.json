@@ -1,0 +1,154 @@
+{
+  "recipes": [
+    {
+      "id": "minor_healing_potion",
+      "name": "Minor Healing Potion",
+      "type": "potion",
+      "description": "A basic healing potion.",
+      "materials": { "arcane_dust": 2, "moon_stone": 1 },
+      "resultId": "minor_potion",
+      "resultQuantity": 1,
+      "requiredLevel": 1
+    },
+    {
+      "id": "healing_potion",
+      "name": "Healing Potion",
+      "type": "potion",
+      "description": "A reliable healing potion.",
+      "materials": { "beast_hide": 2, "spirit_essence": 2, "moon_stone": 3 },
+      "resultId": "healing_potion",
+      "resultQuantity": 1,
+      "requiredLevel": 5
+    },
+    {
+      "id": "advanced_healing_potion",
+      "name": "Advanced Healing Potion",
+      "type": "potion",
+      "description": "A powerful healing potion.",
+      "materials": { "chaos_fragment": 3, "spirit_essence": 5, "demigod_essence": 1 },
+      "resultId": "advanced_healing_potion",
+      "resultQuantity": 1,
+      "requiredLevel": 15
+    },
+    {
+      "id": "spirit_tonic",
+      "name": "Spirit Tonic",
+      "type": "tonic",
+      "description": "Restores spiritual energy.",
+      "materials": { "ectoplasm": 3, "arcane_dust": 3 },
+      "resultId": "spirit_tonic",
+      "resultQuantity": 1,
+      "requiredLevel": 5
+    },
+    {
+      "id": "strength_elixir",
+      "name": "Strength Elixir",
+      "type": "buff",
+      "description": "Temporarily increases strength.",
+      "materials": { "werewolf_claw": 2, "beast_hide": 3 },
+      "resultId": "strength_elixir",
+      "resultQuantity": 1,
+      "requiredLevel": 8
+    },
+    {
+      "id": "lucky_charm",
+      "name": "Lucky Charm",
+      "type": "accessory",
+      "description": "Brings good fortune to the wearer.",
+      "materials": { "moon_stone": 5, "arcane_dust": 5, "gold_coin_pouch": 1 },
+      "resultId": "lucky_charm",
+      "resultQuantity": 1,
+      "requiredLevel": 10
+    },
+    {
+      "id": "iron_dagger",
+      "name": "Iron Dagger",
+      "type": "weapon",
+      "description": "A basic iron dagger.",
+      "materials": { "beast_hide": 1, "iron_ingot": 2 },
+      "resultId": "iron_knife",
+      "resultQuantity": 1,
+      "requiredLevel": 1
+    },
+    {
+      "id": "traveler_coat",
+      "name": "Traveler's Coat",
+      "type": "armor",
+      "description": "A sturdy traveling coat.",
+      "materials": { "beast_hide": 5, "moon_stone": 2 },
+      "resultId": "traveler_coat",
+      "resultQuantity": 1,
+      "requiredLevel": 1
+    },
+    {
+      "id": "mystical_robes",
+      "name": "Mystical Robes",
+      "type": "armor",
+      "description": "Robes imbued with spiritual energy.",
+      "materials": { "ectoplasm": 5, "spirit_essence": 3, "arcane_dust": 5 },
+      "resultId": "mystical_robes",
+      "resultQuantity": 1,
+      "requiredLevel": 8
+    },
+    {
+      "id": "characteristic_extraction",
+      "name": "Beyonder Characteristic Extraction",
+      "type": "special",
+      "description": "Extracts a Beyonder characteristic from defeated Beyonders.",
+      "materials": { "demigod_essence": 1, "chaos_fragment": 5, "potion_fragment": 3 },
+      "resultId": "beyonder_characteristic",
+      "resultQuantity": 1,
+      "requiredLevel": 20
+    },
+    {
+      "id": "dragon_scale_armor",
+      "name": "Dragon Scale Armor",
+      "type": "armor",
+      "description": "Armor forged from dragon scales.",
+      "materials": { "dragon_scale_fragment": 10, "draconic_essence": 5, "demigod_essence": 2 },
+      "resultId": "dragon_scale_armor",
+      "resultQuantity": 1,
+      "requiredLevel": 30
+    },
+    {
+      "id": "blessed_artifact",
+      "name": "Blessed Artifact",
+      "type": "artifact",
+      "description": "A powerful blessed artifact.",
+      "materials": { "divinity_fragment": 3, "mythic_relic": 5, "ancient_soul_crystal": 3 },
+      "resultId": "blessed_artifact",
+      "resultQuantity": 1,
+      "requiredLevel": 40
+    },
+    {
+      "id": "xp_scroll",
+      "name": "Experience Scroll",
+      "type": "special",
+      "description": "Grants bonus experience when used.",
+      "materials": { "ancient_soul_crystal": 2, "epoch_relic": 3 },
+      "resultId": "xp_scroll",
+      "resultQuantity": 1,
+      "requiredLevel": 15
+    },
+    {
+      "id": "shadow_dagger",
+      "name": "Shadow Dagger",
+      "type": "weapon",
+      "description": "A dagger forged in shadows.",
+      "materials": { "wraith_essence": 5, "ectoplasm": 5, "shadow_essence": 2 },
+      "resultId": "shadow_dagger",
+      "resultQuantity": 1,
+      "requiredLevel": 18
+    },
+    {
+      "id": "lucky_potion",
+      "name": "Lucky Potion",
+      "type": "potion",
+      "description": "Temporarily increases luck significantly.",
+      "materials": { "moon_stone": 8, "chaos_fragment": 3, "gold_coin_pouch": 5 },
+      "resultId": "lucky_potion",
+      "resultQuantity": 1,
+      "requiredLevel": 12
+    }
+  ]
+}

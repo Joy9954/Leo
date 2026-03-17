@@ -347,3 +347,250 @@ export function deleteCustomItem(itemId: string, createdBy: string): boolean {
   db.prepare('DELETE FROM custom_items WHERE id = ?').run(itemId);
   return true;
 }
+
+// ============ PETS SYSTEM ============
+
+export interface PlayerPet {
+  id: number;
+  player_id: string;
+  pet_id: string;
+  nickname: string | null;
+  level: number;
+  loyalty: number;
+  is_active: number;
+  earned_xp: number;
+}
+
+export function getPlayerPets(playerId: string): PlayerPet[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM pets WHERE player_id = ?').all(playerId) as PlayerPet[];
+}
+
+export function getActivePet(playerId: string): PlayerPet | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM pets WHERE player_id = ? AND is_active = 1').get(playerId) as PlayerPet | undefined;
+}
+
+export function addPet(playerId: string, petId: string, nickname?: string): void {
+  const db = getDatabase();
+  db.prepare('INSERT INTO pets (player_id, pet_id, nickname) VALUES (?, ?, ?)').run(playerId, petId, nickname || null);
+}
+
+export function removePet(petId: number, playerId: string): boolean {
+  const db = getDatabase();
+  const pet = db.prepare('SELECT * FROM pets WHERE id = ? AND player_id = ?').get(petId, playerId) as PlayerPet | undefined;
+  if (!pet) return false;
+  db.prepare('DELETE FROM pets WHERE id = ?').run(petId);
+  return true;
+}
+
+export function setActivePet(playerId: string, petId: number): boolean {
+  const db = getDatabase();
+  const pet = db.prepare('SELECT * FROM pets WHERE id = ? AND player_id = ?').get(petId, playerId) as PlayerPet | undefined;
+  if (!pet) return false;
+  db.prepare('UPDATE pets SET is_active = 0 WHERE player_id = ?').run(playerId);
+  db.prepare('UPDATE pets SET is_active = 1 WHERE id = ?').run(petId);
+  return true;
+}
+
+export function updatePet(petId: number, updates: Partial<Pick<PlayerPet, 'nickname' | 'level' | 'loyalty' | 'earned_xp'>>): void {
+  const db = getDatabase();
+  const fields = Object.keys(updates).map(k => `${k} = ?`).join(', ');
+  const values = Object.values(updates);
+  if (fields) {
+    db.prepare(`UPDATE pets SET ${fields} WHERE id = ?`).run(...values, petId);
+  }
+}
+
+// ============ CRAFTING SYSTEM ============
+
+export interface Recipe {
+  id: string;
+  name: string;
+  type: string;
+  materials: string;
+  result_id: string;
+  result_quantity: number;
+  required_level: number;
+  description: string | null;
+}
+
+export function getAllRecipes(): Recipe[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM recipes').all() as Recipe[];
+}
+
+export function getRecipeById(recipeId: string): Recipe | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM recipes WHERE id = ?').get(recipeId) as Recipe | undefined;
+}
+
+export function getRecipesByType(type: string): Recipe[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM recipes WHERE type = ?').all(type) as Recipe[];
+}
+
+export function addRecipe(
+  id: string,
+  name: string,
+  type: string,
+  materials: string,
+  resultId: string,
+  resultQuantity: number,
+  requiredLevel: number,
+  description?: string
+): void {
+  const db = getDatabase();
+  db.prepare(
+    'INSERT OR REPLACE INTO recipes (id, name, type, materials, result_id, result_quantity, required_level, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+  ).run(id, name, type, materials, resultId, resultQuantity, requiredLevel, description || null);
+}
+
+// ============ RAID SYSTEM ============
+
+export interface Raid {
+  id: number;
+  raid_id: string;
+  spawn_time: number;
+  end_time: number;
+  current_health: number;
+  max_health: number;
+  status: string;
+}
+
+export interface RaidParticipant {
+  id: number;
+  raid_id: number;
+  player_id: string;
+  damage_dealt: number;
+  joined_at: number;
+}
+
+export function getActiveRaids(): Raid[] {
+  const db = getDatabase();
+  return db.prepare("SELECT * FROM raids WHERE status = 'active'").all() as Raid[];
+}
+
+export function getRaidById(raidId: number): Raid | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM raids WHERE id = ?').get(raidId) as Raid | undefined;
+}
+
+export function createRaid(raidId: string, spawnTime: number, endTime: number, maxHealth: number): void {
+  const db = getDatabase();
+  db.prepare(
+    'INSERT INTO raids (raid_id, spawn_time, end_time, current_health, max_health, status) VALUES (?, ?, ?, ?, ?, ?)'
+  ).run(raidId, spawnTime, endTime, maxHealth, maxHealth, 'active');
+}
+
+export function updateRaidHealth(raidId: number, newHealth: number): void {
+  const db = getDatabase();
+  const health = Math.max(0, newHealth);
+  const status = health <= 0 ? 'completed' : 'active';
+  db.prepare('UPDATE raids SET current_health = ?, status = ? WHERE id = ?').run(health, status, raidId);
+}
+
+export function getRaidParticipants(raidId: number): RaidParticipant[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM raid_participants WHERE raid_id = ? ORDER BY damage_dealt DESC').all(raidId) as RaidParticipant[];
+}
+
+export function joinRaid(raidId: number, playerId: string): void {
+  const db = getDatabase();
+  const existing = db.prepare('SELECT * FROM raid_participants WHERE raid_id = ? AND player_id = ?').get(raidId, playerId) as RaidParticipant | undefined;
+  if (!existing) {
+    db.prepare('INSERT INTO raid_participants (raid_id, player_id, damage_dealt) VALUES (?, ?, 0)').run(raidId, playerId);
+  }
+}
+
+export function addRaidDamage(raidId: number, playerId: string, damage: number): void {
+  const db = getDatabase();
+  db.prepare(
+    'UPDATE raid_participants SET damage_dealt = damage_dealt + ? WHERE raid_id = ? AND player_id = ?'
+  ).run(damage, raidId, playerId);
+}
+
+// ============ CASINO SYSTEM ============
+
+export interface CasinoGame {
+  id: number;
+  player_id: string;
+  game_type: string;
+  bet_amount: number;
+  result: string;
+  winnings: number;
+  created_at: number;
+}
+
+export function logCasinoGame(
+  playerId: string,
+  gameType: string,
+  betAmount: number,
+  result: string,
+  winnings: number
+): void {
+  const db = getDatabase();
+  db.prepare(
+    'INSERT INTO casino_games (player_id, game_type, bet_amount, result, winnings) VALUES (?, ?, ?, ?, ?)'
+  ).run(playerId, gameType, betAmount, result, winnings);
+}
+
+export function getCasinoHistory(playerId: string, limit = 10): CasinoGame[] {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM casino_games WHERE player_id = ? ORDER BY created_at DESC LIMIT ?').all(playerId, limit) as CasinoGame[];
+}
+
+// Daily pulls
+export function getLastDailyPull(playerId: string): { pulled_at: number } | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT pulled_at FROM daily_pulls WHERE player_id = ? ORDER BY pulled_at DESC LIMIT 1').get(playerId) as { pulled_at: number } | undefined;
+}
+
+export function recordDailyPull(playerId: string): void {
+  const db = getDatabase();
+  db.prepare('INSERT INTO daily_pulls (player_id) VALUES (?)').run(playerId);
+}
+
+// ============ TRADING SYSTEM ============
+
+export interface Trade {
+  id: number;
+  offerer_id: string;
+  receiver_id: string;
+  offered_items: string | null;
+  offered_gold: number;
+  requested_items: string | null;
+  requested_gold: number;
+  status: string;
+  created_at: number;
+}
+
+export function createTrade(
+  offererId: string,
+  receiverId: string,
+  offeredItems: string,
+  offeredGold: number,
+  requestedItems: string,
+  requestedGold: number
+): number {
+  const db = getDatabase();
+  const result = db.prepare(
+    'INSERT INTO trades (offerer_id, receiver_id, offered_items, offered_gold, requested_items, requested_gold) VALUES (?, ?, ?, ?, ?, ?)'
+  ).run(offererId, receiverId, offeredItems, offeredGold, requestedItems, requestedGold);
+  return result.lastInsertRowid as number;
+}
+
+export function getTrade(tradeId: number): Trade | undefined {
+  const db = getDatabase();
+  return db.prepare('SELECT * FROM trades WHERE id = ?').get(tradeId) as Trade | undefined;
+}
+
+export function getPendingTradesForPlayer(playerId: string): Trade[] {
+  const db = getDatabase();
+  return db.prepare("SELECT * FROM trades WHERE (offerer_id = ? OR receiver_id = ?) AND status = 'pending'").all(playerId, playerId) as Trade[];
+}
+
+export function updateTradeStatus(tradeId: number, status: 'accepted' | 'declined' | 'expired'): void {
+  const db = getDatabase();
+  db.prepare('UPDATE trades SET status = ? WHERE id = ?').run(status, tradeId);
+}
