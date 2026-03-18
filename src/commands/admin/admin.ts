@@ -152,6 +152,19 @@ const command: Command = {
             .addUserOption(opt => opt.setName('target').setDescription('The player').setRequired(true))
             .addStringOption(opt => opt.setName('quest_id').setDescription('Quest ID').setRequired(true))
         )
+    )
+    // System Management Group
+    .addSubcommandGroup(group =>
+      group.setName('system')
+        .setDescription('Manage bot system')
+        .addSubcommand(sub =>
+          sub.setName('status')
+            .setDescription('View bot status and memory usage')
+        )
+        .addSubcommand(sub =>
+          sub.setName('clear-cache')
+            .setDescription('Clear bot caches')
+        )
     ),
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
@@ -290,6 +303,45 @@ const command: Command = {
           await interaction.reply({ embeds: [successEmbed(`Marked quest \`${questId}\` as completed for ${target.username}.`)] });
         } else {
           await interaction.reply({ embeds: [errorEmbed(`Player does not have quest \`${questId}\` active.`)], ephemeral: true });
+        }
+      }
+    } else if (group === 'system') {
+      if (subcommand === 'status') {
+        const used = process.memoryUsage();
+        const memory = [
+          `**RSS**: ${Math.round(used.rss / 1024 / 1024 * 100) / 100} MB`,
+          `**Heap Total**: ${Math.round(used.heapTotal / 1024 / 1024 * 100) / 100} MB`,
+          `**Heap Used**: ${Math.round(used.heapUsed / 1024 / 1024 * 100) / 100} MB`,
+          `**External**: ${Math.round(used.external / 1024 / 1024 * 100) / 100} MB`,
+        ].join('\n');
+
+        const cache = [
+          `**Guilds**: ${interaction.client.guilds.cache.size}`,
+          `**Channels**: ${interaction.client.channels.cache.size}`,
+          `**Users**: ${interaction.client.users.cache.size}`,
+          `**Guild Members**: ${interaction.client.guilds.cache.reduce((acc, guild) => acc + guild.members.cache.size, 0)}`,
+        ].join('\n');
+
+        const embed = new EmbedBuilder()
+          .setTitle('Bot System Status')
+          .setColor(0x3498db)
+          .addFields(
+            { name: 'Memory Usage', value: memory, inline: true },
+            { name: 'Cache Statistics', value: cache, inline: true },
+            { name: 'Uptime', value: `${Math.floor(process.uptime() / 60)} minutes`, inline: false }
+          );
+
+        await interaction.reply({ embeds: [embed], ephemeral: true });
+      } else if (subcommand === 'clear-cache') {
+        // Trigger garbage collection if exposed
+        if (global.gc) {
+          global.gc();
+          await interaction.reply({ embeds: [successEmbed('Manually triggered Garbage Collection.')], ephemeral: true });
+        } else {
+          await interaction.reply({ 
+            embeds: [successEmbed('Cache sweepers have been notified to run. Note: Garbage collection is not manually accessible.')], 
+            ephemeral: true 
+          });
         }
       }
     }

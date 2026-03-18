@@ -47,7 +47,7 @@ import casinoSlotsCommand from './commands/casino/casino_slots';
 import tradeOfferCommand from './commands/casino/trade_offer';
 import tradeAcceptCommand from './commands/casino/trade_accept';
 
-import { getDatabase } from './database/Database';
+import { getDatabase, closeDatabase } from './database/Database';
 import { initializeRecipes } from './game/CraftingEngine';
 import { isPlayerBanned } from './database/PlayerRepository';
 import { errorEmbed } from './utils/embeds';
@@ -271,3 +271,38 @@ client.login(token).catch((err) => {
   console.error('❌ Failed to login:', err);
   process.exit(1);
 });
+
+// Memory monitoring
+const logMemoryUsage = () => {
+  const used = process.memoryUsage();
+  console.log(`[Memory Usage] RSS: ${Math.round(used.rss / 1024 / 1024 * 100) / 100} MB, Heap Total: ${Math.round(used.heapTotal / 1024 / 1024 * 100) / 100} MB, Heap Used: ${Math.round(used.heapUsed / 1024 / 1024 * 100) / 100} MB, External: ${Math.round(used.external / 1024 / 1024 * 100) / 100} MB`);
+};
+
+// Log memory usage every 10 minutes
+setInterval(logMemoryUsage, 10 * 60 * 1000);
+
+// Initial memory usage log
+logMemoryUsage();
+
+// Graceful shutdown
+async function gracefulShutdown(signal: string) {
+  console.log(`\nReceived ${signal}. Shutting down...`);
+  
+  try {
+    // Destroy the client
+    console.log('Destroying client...');
+    client.destroy();
+    
+    // Close database connection
+    closeDatabase();
+    
+    console.log('✅ Graceful shutdown complete');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error during graceful shutdown:', error);
+    process.exit(1);
+  }
+}
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));

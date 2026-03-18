@@ -20,6 +20,13 @@ export function getDatabase(): Database.Database {
   return db;
 }
 
+export function closeDatabase(): void {
+  if (db) {
+    db.close();
+    console.log('✅ Database connection closed');
+  }
+}
+
 function initializeSchema(db: Database.Database): void {
   db.exec(`
     CREATE TABLE IF NOT EXISTS players (
