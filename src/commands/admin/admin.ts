@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { Command } from '../../client/BotClient';
 import { 
   getCharacter, 
@@ -31,8 +31,8 @@ import itemsData from '../../data/items.json';
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName('admin')
-    .setDescription('Admin management commands')
-    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+    .setDescription('Admin and server owner management commands')
+    // Removed default permission - handled in code to allow both admins AND server owners
     // User Management Group
     .addSubcommandGroup(group =>
       group.setName('user')
@@ -171,9 +171,12 @@ const command: Command = {
     const group = interaction.options.getSubcommandGroup();
     const subcommand = interaction.options.getSubcommand();
 
-    // Check permissions just in case (slash command permissions should handle this but extra safety)
-    if (!interaction.memberPermissions?.has('Administrator')) {
-      await interaction.reply({ embeds: [errorEmbed('You need Administrator permissions to use this command.')], ephemeral: true });
+    // Check permissions: allow both admins AND server owners
+    const isServerOwner = interaction.guild?.ownerId === interaction.user.id;
+    const isAdmin = interaction.memberPermissions?.has('Administrator') ?? false;
+    
+    if (!isAdmin && !isServerOwner) {
+      await interaction.reply({ embeds: [errorEmbed('You need Administrator permissions or be the server owner to use this command.')], ephemeral: true });
       return;
     }
 
