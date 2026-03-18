@@ -6,6 +6,7 @@ import {
   REST,
   Routes,
   RESTPostAPIChatInputApplicationCommandsJSONBody,
+  Options,
 } from 'discord.js';
 
 export interface Command {
@@ -23,6 +24,23 @@ export class BotClient extends Client {
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
       ],
+      makeCache: Options.cacheWithLimits({
+        MessageManager: 50,
+        GuildMemberManager: 100,
+        ThreadManager: 10,
+        PresenceManager: 0,
+        ReactionManager: 0,
+        UserManager: 100,
+        BaseGuildEmojiManager: 10,
+        GuildEmojiManager: 10,
+        RoleManager: 50,
+      }),
+      sweepers: {
+        messages: {
+          interval: 3600,
+          lifetime: 1800,
+        },
+      },
     });
   }
 
