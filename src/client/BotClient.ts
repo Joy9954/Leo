@@ -33,7 +33,6 @@ export class BotClient extends Client {
         UserManager: 100,
         BaseGuildEmojiManager: 10,
         GuildEmojiManager: 10,
-        RoleManager: 50,
       }),
       sweepers: {
         messages: {
